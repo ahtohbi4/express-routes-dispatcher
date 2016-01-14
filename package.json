@@ -22,6 +22,7 @@
     "url": "https://github.com/ahtohbi4/express-routes-dispatcher/issues"
   },
   "homepage": "https://github.com/ahtohbi4/express-routes-dispatcher#readme",
+  "dependencies": {},
   "devDependencies": {
     "jasmine-node": "^1.14.5",
     "request": "^2.67.0"
