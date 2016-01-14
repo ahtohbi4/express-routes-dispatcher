@@ -1,0 +1,33 @@
+{
+  "author": "Alexandr Antonov",
+  "name": "express-routes-dispatcher",
+  "version": "0.0.0",
+  "description": "Routing for expressjs",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahtohbi4/express-routes-dispatcher.git"
+  },
+  "keywords": [
+    "routing",
+    "router",
+    "express",
+    "expressjs"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ahtohbi4/express-routes-dispatcher/issues"
+  },
+  "homepage": "https://github.com/ahtohbi4/express-routes-dispatcher#readme",
+  "dependencies": {
+    "jasmine": "^2.4.0"
+  },
+  "devDependencies": {
+    "expect": "^1.12.2",
+    "mocha": "^2.3.3",
+    "postcss": "^5.0.10"
+  }
+}
