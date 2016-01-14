@@ -1,8 +1,23 @@
-var server = require('./server');
+var express = require('express'),
+    app = express();
+
+var PORT = 1337;
+
 var request = require('request');
 
-server.start();
-server.stop();
+var router = require('../lib/index.js');
+router(app, {
+    host: 'example.com',
+    port: PORT,
+    baseDir: __dirname,
+    file: 'routing.json'
+});
+
+var server = app.listen(PORT, function (){
+    console.log('Express server listening on port ' + PORT);
+});
+
+server.close();
 
 // var base_url = 'http://localhost:1337/'
 
