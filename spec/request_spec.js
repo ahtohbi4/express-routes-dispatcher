@@ -15,7 +15,7 @@ router(app, {
     file: 'routing.json'
 });
 
-var server = app.listen(PORT, function (){
+var server = app.listen(PORT, function () {
     console.log('Express server listening on port ' + PORT);
 });
 
@@ -31,8 +31,8 @@ describe('checking Status Code of response', function () {
                 done();
             });
         });
-    }
-}
+    });
+});
 
 server.close();
 
