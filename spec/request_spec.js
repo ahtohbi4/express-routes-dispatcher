@@ -1,9 +1,11 @@
+var request = require('request');
+var url = require('url');
+
 var express = require('express'),
     app = express();
 
-var PORT = 1337;
-
-var request = require('request');
+var HOST = 'localhost',
+    PORT = 1337;
 
 var router = require('../lib/index.js');
 router(app, {
@@ -16,6 +18,21 @@ router(app, {
 var server = app.listen(PORT, function (){
     console.log('Express server listening on port ' + PORT);
 });
+
+describe('checking Status Code of response', function () {
+    describe('GET non-existent page', function () {
+        it('returns status code 404', function (done) {
+            request.get(url.format({
+                protocol: 'http',
+                hostname: HOST,
+                port: PORT
+            }), function(error, response, body) {
+                expect(response.statusCode).toBe(200);
+                done();
+            });
+        });
+    }
+}
 
 server.close();
 
