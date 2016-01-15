@@ -1,0 +1,7 @@
+{
+    "external_routing": {
+        "resource": "routing/external_routing.json",
+        "prefix": "/external"
+    }
+}
+
