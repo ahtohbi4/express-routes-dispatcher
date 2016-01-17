@@ -1,4 +1,27 @@
 {
+    "route_without_controller": {
+        "path": "/route-without-controller/"
+    },
+    "route_without_template_and_format": {
+        "path": "/route-without-template-and-format/",
+        "defaults": {
+            "_controller": "controllers/default.js"
+        }
+    },
+    "route_for_html_without_template": {
+        "path": "/route-for-html-without-template/",
+        "defaults": {
+            "_controller": "controllers/default.js",
+            "_format": "html"
+        }
+    },
+    "only_post_method_allowing": {
+        "path": "/only-post-method-allowing/",
+        "defaults": {
+            "_controller": "controllers/default.js"
+        }
+    },
+
     "external_routing": {
         "resource": "routing/external_routing.json",
         "prefix": "/external"
