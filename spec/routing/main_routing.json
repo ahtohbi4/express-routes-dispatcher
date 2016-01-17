@@ -15,6 +15,13 @@
             "_format": "html"
         }
     },
+    "route_with_template_without_format": {
+        "path": "/route-with-template-without-format/",
+        "defaults": {
+            "_controller": "controllers/default.js",
+            "_template": "views/default.tpl"
+        }
+    },
     "only_post_method_allowing": {
         "path": "/only-post-method-allowing/",
         "defaults": {
