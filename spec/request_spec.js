@@ -1,10 +1,11 @@
-var HOST = 'localhost',
-    PORT = 1337;
+var HOST = 'localhost';
+var PORT = 1337;
 
 var request = require('request');
 var url = require('url');
-var express = require('express'),
-    app = express();
+
+var express = require('express');
+var app = express();
 
 var router = require('../lib/index.js');
 router(app, {
@@ -54,7 +55,7 @@ describe('checking Status Code of response', function () {
         });
     });
 
-    xdescribe('GET Route without defaults._template and defaults._format', function () {
+    describe('GET Route without defaults._template and defaults._format', function () {
         it('returns json', function (done) {
             request.get(getAbsoluteURL('/route-without-template-and-format/'), function (error, response, body) {
                 expect(response.statusCode).toBe(200);
@@ -64,7 +65,7 @@ describe('checking Status Code of response', function () {
         });
     });
 
-    xdescribe('GET URI allowing only POST method', function () {
+    describe('GET URI allowing only POST method', function () {
         it('returns status code 405', function (done) {
             request.get(getAbsoluteURL('/only-post-method-allowing/'), function (error, response) {
                 expect(response.statusCode).toBe(405);
