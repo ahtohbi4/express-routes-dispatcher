@@ -1,5 +1,4 @@
 {
-  "author": "Alexandr Antonov",
   "name": "express-routes-dispatcher",
   "version": "0.0.0",
   "description": "Routing for expressjs",
@@ -17,6 +16,7 @@
     "express",
     "expressjs"
   ],
+  "author": "Alexandr Antonov",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ahtohbi4/express-routes-dispatcher/issues"

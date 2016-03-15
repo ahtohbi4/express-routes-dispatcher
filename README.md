@@ -14,4 +14,9 @@ express-routes-dispatcher
 [codacy-img]: https://api.codacy.com/project/badge/grade/480c7aa1737046bfa6d475082847d513
 [codacy]: https://www.codacy.com/app/alexandr-post/express-routes-dispatcher
 
-> Routing for expressjs.
+> Routing based on JSON for [Express](http://expressjs.com/).
+
+License
+--------------------
+
+MIT © Alexander Antonov <alexandr-post@yandex.ru>
