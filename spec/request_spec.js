@@ -16,10 +16,9 @@ router(app, {
 });
 
 /**
- * @method
+ * @func
  * @param {string} path
  * @returns {string} Absolute URI to path
- * @public
  */
 function getAbsoluteURL(path) {
     return url.format({
