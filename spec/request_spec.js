@@ -30,10 +30,16 @@ function getAbsoluteURL(path) {
 }
 
 describe('checking Status Code of response', function () {
+    // Start server before each test
     beforeEach(function () {
         this.server = app.listen(PORT, function () {
             console.log('Express server listening on port ' + PORT);
         });
+    });
+
+    // Stop server after each test
+    afterEach(function () {
+        this.server.close();
     });
 
     describe('GET non-existent page', function () {
@@ -72,9 +78,5 @@ describe('checking Status Code of response', function () {
                 done();
             });
         });
-    });
-
-    afterEach(function () {
-        this.server.close();
     });
 });
