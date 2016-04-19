@@ -33,13 +33,16 @@ describe('checking Status Code of response', function () {
     // Start server before each test
     beforeEach(function () {
         this.server = app.listen(PORT, function () {
-            console.log('Express server listening on port ' + PORT);
+            this._id = 'some id'; // @todo: generate ID
+            console.log('[' + this._id + '] expressjs server listening on port ' + PORT + '.');
         });
     });
 
     // Stop server after each test
     afterEach(function () {
-        this.server.close();
+        this.server.close(function () {
+            console.log('[' + this._id + '] expressjs server on port ' + PORT + ' was stopped!');
+        });
     });
 
     describe('GET non-existent page', function () {
