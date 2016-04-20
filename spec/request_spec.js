@@ -39,9 +39,10 @@ describe('checking Status Code of response', function () {
     });
 
     // Stop server after each test
-    afterEach(function () {
+    afterEach(function (done) {
         this.server.close(function () {
             console.log('[' + this._id + '] expressjs server on port ' + PORT + ' was stopped!');
+            done();
         });
     });
 
