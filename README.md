@@ -1,5 +1,5 @@
-express-routes-dispatcher
-==============
+Routing based on JSON
+==
 
 [![npm version][version-img]][version] [![Dependency Status][dependency-img]][dependency] [![Travis Build Status][travis-img]][travis] [![Appveyor Build Status][appveyor-img]][appveyor] [![Codacy Badge][codacy-img]][codacy]
 
@@ -14,9 +14,32 @@ express-routes-dispatcher
 [codacy-img]: https://api.codacy.com/project/badge/grade/480c7aa1737046bfa6d475082847d513
 [codacy]: https://www.codacy.com/app/alexandr-post/express-routes-dispatcher
 
-> Routing based on JSON for [Express](http://expressjs.com/).
+> MVC Routing based on JSON for [Express](http://expressjs.com/).
+
+In this implementation the routing is based on JSON format, which is a map from a URL path to a controller (Controller) to processes the request and finally to a template (View) to visualize a response.
+
+Format is similar to syntax of [Symfony](https://symfony.com/doc/3.0/book/routing.html) YAML based Routing.
+
+Installation
+--
+
+```bash
+$ npm install express-routes-dispatcher --save-dev
+```
+
+Usage
+--
+
+...
+
+Tests
+--
+
+```bash
+$ npm test
+```
 
 License
---------------------
+--
 
 MIT © Alexander Antonov <alexandr-post@yandex.ru>
