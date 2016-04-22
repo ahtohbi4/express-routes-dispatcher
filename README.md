@@ -31,7 +31,7 @@ Usage
 --
 
 ```javascript
-# app/config/routing.js
+// app/config/routing.js
 news_page: {
     path: '/news/',
     defaults: {
