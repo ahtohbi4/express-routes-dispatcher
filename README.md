@@ -30,7 +30,15 @@ $ npm install express-routes-dispatcher --save-dev
 Usage
 --
 
-...
+```javascript
+# app/config/routing.js
+news_page: {
+    path: '/news/',
+    defaults: {
+        _controller: 'News/list'
+    }
+}
+```
 
 Tests
 --
