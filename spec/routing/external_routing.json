@@ -1,5 +1,4 @@
 {
-    // Simple route with requirement attributes only
     "external_route_simple": {
         "path": "/route-simple/",
         "defaults": {
@@ -7,7 +6,6 @@
         }
     },
 
-    // Route with param
     "external_route_with_param": {
         "path": "/route-with-param/{param}/",
         "defaults": {

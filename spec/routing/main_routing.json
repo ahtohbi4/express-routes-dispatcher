@@ -1,14 +1,8 @@
 {
-    // Route without requirement attributes ('path' and 'defaults._controller')
-    "route_empty": {
-    },
-
-    // Route without requirement attribute 'defaults._controller'
     "route_without_controller": {
         "path": "/route-without-controller/"
     },
 
-    // Simple route with requirement attributes only
     "route_simple": {
         "path": "/route-simple/",
         "defaults": {
@@ -16,7 +10,6 @@
         }
     },
 
-    // Route for HTML but without template
     "route_for_html_without_template": {
         "path": "/route-for-html-without-template/",
         "defaults": {
@@ -25,7 +18,6 @@
         }
     },
 
-    // Route with template
     "route_with_template_without_format": {
         "path": "/route-with-template-without-format/",
         "defaults": {
@@ -34,7 +26,6 @@
         }
     },
 
-    // Route for JSON with template
     "route_with_template_for_json": {
         "path": "/route-with-template-for-json/",
         "defaults": {
@@ -44,7 +35,6 @@
         }
     },
 
-    // Route with param
     "route_with_param": {
         "path": "/route-with-param/{param}/",
         "defaults": {
@@ -56,7 +46,6 @@
         }
     },
 
-    // Only POST method is allowed
     "only_post_method_allowing": {
         "path": "/only-post-method-allowing/",
         "defaults": {
@@ -67,16 +56,13 @@
         ]
     },
 
-    // External routing
     "external_routing": {
         "prefix": "/external",
         "resource": "routing/external_routing.json"
     },
 
-    // External routing with param
     "external_routing_with_param": {
         "prefix": "/external/{param}",
         "resource": "routing/external_routing.json"
     }
 }
-
