@@ -1,13 +1,22 @@
 {
+    // Route without requirement attributes ('path' and 'defaults._controller')
+    "route_empty": {
+    },
+
+    // Route without requirement attribute 'defaults._controller'
     "route_without_controller": {
         "path": "/route-without-controller/"
     },
-    "route_without_template_and_format": {
-        "path": "/route-without-template-and-format/",
+
+    // Simple route with requirement attributes only
+    "route_simple": {
+        "path": "/route-simple/",
         "defaults": {
             "_controller": "controllers/default.js"
         }
     },
+
+    // Route for HTML but without template
     "route_for_html_without_template": {
         "path": "/route-for-html-without-template/",
         "defaults": {
@@ -15,6 +24,8 @@
             "_format": "html"
         }
     },
+
+    // Route with template
     "route_with_template_without_format": {
         "path": "/route-with-template-without-format/",
         "defaults": {
@@ -22,15 +33,50 @@
             "_template": "views/default.tpl"
         }
     },
+
+    // Route for JSON with template
+    "route_with_template_for_json": {
+        "path": "/route-with-template-for-json/",
+        "defaults": {
+            "_controller": "controllers/default.js",
+            "_template": "views/default.tpl",
+            "_format": "json"
+        }
+    },
+
+    // Route with param
+    "route_with_param": {
+        "path": "/route-with-param/{param}/",
+        "defaults": {
+            "_controller": "controllers/default.js",
+            "param": "val1"
+        },
+        "requirements": {
+            "param": "val1|val2"
+        }
+    },
+
+    // Only POST method is allowed
     "only_post_method_allowing": {
         "path": "/only-post-method-allowing/",
         "defaults": {
             "_controller": "controllers/default.js"
-        }
+        },
+        "methods": [
+            "POST"
+        ]
     },
+
+    // External routing
     "external_routing": {
-        "resource": "routing/external_routing.json",
-        "prefix": "/external"
+        "prefix": "/external",
+        "resource": "routing/external_routing.json"
+    },
+
+    // External routing with param
+    "external_routing_with_param": {
+        "prefix": "/external/{param}",
+        "resource": "routing/external_routing.json"
     }
 }
 
