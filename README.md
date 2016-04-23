@@ -31,11 +31,11 @@ Usage
 --
 
 ```javascript
-// app/config/routing.js
-news_page: {
-    path: '/news/',
-    defaults: {
-        _controller: 'News/list'
+// app/config/routing.json
+"news_page": {
+    "path": "/news/",
+    "defaults": {
+        "_controller": "News/list"
     }
 }
 ```

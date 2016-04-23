@@ -29,11 +29,21 @@ function getAbsoluteURL(path) {
     });
 }
 
+function counter() {
+    var count = 0;
+
+    return function () {
+        return count++;
+    };
+}
+
+var getId = counter();
+
 describe('checking Status Code of response', function () {
     // Start server before each test
     beforeEach(function () {
         this.server = app.listen(PORT, function () {
-            this._id = 'some id'; // @todo: generate ID
+            this._id = getId();
             console.log('[' + this._id + '] expressjs server listening on port ' + PORT + '.');
         });
     });
