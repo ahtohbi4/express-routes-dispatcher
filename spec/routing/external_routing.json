@@ -1,1 +1,21 @@
-{}
+{
+    // Simple route with requirement attributes only
+    "external_route_simple": {
+        "path": "/route-simple/",
+        "defaults": {
+            "_controller": "controllers/default.js"
+        }
+    },
+
+    // Route with param
+    "external_route_with_param": {
+        "path": "/route-with-param/{param}/",
+        "defaults": {
+            "_controller": "controllers/default.js",
+            "param": "val1"
+        },
+        "requirements": {
+            "param": "val1|val2"
+        }
+    }
+}
