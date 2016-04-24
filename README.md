@@ -33,10 +33,29 @@ Usage
 ```json
 // app/config/routing.json
 {
-    "news_page": {
-        "path": "/news/",
+    "welcome_page": {
+        "path": "/",
         "defaults": {
-            "_controller": "News/list"
+            "_controller": "modules/Default/index.js",
+            "_template": "app/Resources/views/pages/welcome_page.html.twig"
+        }
+    },
+
+    "_news": {
+        "prefix": "/news",
+        "resource": "modules/News/config/routing.json"
+    }
+}
+```
+
+```json
+// modules/News/config/routing.json
+{
+    "list": {
+        "path": "/",
+        "defaults": {
+            "_controller": "modules/News/config/index.js",
+            "_template": "modules/News/views/pages/list.html.twig"
         }
     }
 }
