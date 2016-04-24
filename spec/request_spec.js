@@ -29,21 +29,19 @@ function getAbsoluteURL(path) {
     });
 }
 
-function counter() {
+var counter = (function () {
     var count = 0;
 
     return function () {
         return count++;
     };
-}
+}())
 
-var getId = counter();
-
-describe('checking Status Code of response', function () {
+describe('Response from', function () {
     // Start server before each test
     beforeEach(function () {
         this.server = app.listen(PORT, function () {
-            this._id = getId();
+            this._id = counter();
             console.log('[' + this._id + '] expressjs server listening on port ' + PORT + '.');
         });
     });
@@ -56,7 +54,7 @@ describe('checking Status Code of response', function () {
         });
     });
 
-    describe('Non-existing URL', function () {
+    describe('non-existing URL', function () {
         it('returns status code 404', function (done) {
             request.get(getAbsoluteURL('/non-existent-page/'), function (error, response) {
                 expect(response.statusCode).toBe(404);
@@ -65,7 +63,7 @@ describe('checking Status Code of response', function () {
         });
     });
 
-    describe('Route without requirement attribute \'defaults._controller\'', function () {
+    describe('route without requirement attribute \'defaults._controller\'', function () {
         it('returns status code 500', function (done) {
             request.get(getAbsoluteURL('/route-without-controller/'), function (error, response, body) {
                 expect(response.statusCode).toBe(500);
@@ -75,7 +73,7 @@ describe('checking Status Code of response', function () {
         });
     });
 
-    describe('Simple route with requirement attributes only', function () {
+    describe('simple route with requirement attributes only', function () {
         it('returns status code 200', function (done) {
             request.get(getAbsoluteURL('/route-simple/'), function (error, response) {
                 expect(response.statusCode).toBe(200);
@@ -91,7 +89,7 @@ describe('checking Status Code of response', function () {
         });
     });
 
-    describe('Route for HTML but without template', function () {
+    describe('route for HTML but without template', function () {
         it('returns status code 500', function (done) {
             request.get(getAbsoluteURL('/route-for-html-without-template/'), function (error, response, body) {
                 expect(response.statusCode).toBe(500);
@@ -101,7 +99,7 @@ describe('checking Status Code of response', function () {
         });
     });
 
-    describe('Route with template', function () {
+    describe('route with template', function () {
         it('returns status code 200', function (done) {
             request.get(getAbsoluteURL('/route-with-template-without-format/'), function (error, response) {
                 expect(response.statusCode).toBe(200);
@@ -109,7 +107,7 @@ describe('checking Status Code of response', function () {
             });
         });
 
-        it('returns JSON', function (done) {
+        it('returns \'Hello, World!\'', function (done) {
             request.get(getAbsoluteURL('/route-with-template-without-format/'), function (error, response, body) {
                 expect(body).toMatch('Hello, World!');
                 done();
@@ -117,7 +115,7 @@ describe('checking Status Code of response', function () {
         });
     });
 
-    describe('Route for JSON with template', function () {
+    describe('route for JSON with template', function () {
         it('returns status code 200', function (done) {
             request.get(getAbsoluteURL('/route-with-template-for-json/'), function (error, response) {
                 expect(response.statusCode).toBe(200);
@@ -140,7 +138,7 @@ describe('checking Status Code of response', function () {
         });
     });
 
-    describe('Route with param', function () {
+    describe('route with param', function () {
         it('returns status code 404 for not matched \'val3\'', function (done) {
             request.get(getAbsoluteURL('/route-with-param/val3/'), function (error, response) {
                 expect(response.statusCode).toBe(404);
@@ -163,7 +161,7 @@ describe('checking Status Code of response', function () {
         });
     });
 
-    describe('Route Only POST method is allowed', function () {
+    describe('route Only POST method is allowed', function () {
         it('returns status code 405 for GET', function (done) {
             request.get(getAbsoluteURL('/only-post-method-allowing/'), function (error, response) {
                 expect(response.statusCode).toBe(405);
