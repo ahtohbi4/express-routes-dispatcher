@@ -83,7 +83,7 @@ describe('Response from', function () {
         });
     });
 
-    xdescribe('simple route with requirement attributes only', function () {
+    describe('simple route with requirement attributes only', function () {
         it('returns status code 200', function (done) {
             request.get(getAbsoluteURL('/route-simple/'), function (error, response) {
                 expect(response.statusCode).toBe(200);
@@ -93,7 +93,9 @@ describe('Response from', function () {
 
         it('returns JSON', function (done) {
             request.get(getAbsoluteURL('/route-simple/'), function (error, response, body) {
-                expect(body).toMatch({});
+                expect(body).toMatch({
+                    data: {}
+                });
                 done();
             });
         });
