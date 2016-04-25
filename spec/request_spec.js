@@ -7,6 +7,10 @@ var url = require('url');
 var express = require('express');
 var app = express();
 
+var Twig = require('twig');
+app.set('views', __dirname);
+app.set('view engine', 'twig');
+
 var router = require('../lib/index.js');
 router(app, {
     host: HOST,

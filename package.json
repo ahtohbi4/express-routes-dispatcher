@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "jasmine-node": "^1.14.5",
-    "request": "^2.67.0"
+    "request": "^2.67.0",
+    "twig": "^0.8.9"
   }
 }
