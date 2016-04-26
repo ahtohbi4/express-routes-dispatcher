@@ -93,7 +93,7 @@ describe('Response from', function () {
 
         it('returns JSON', function (done) {
             request.get(getAbsoluteURL('/route-simple/'), function (error, response, body) {
-                expect(body).toMatch({
+                expect(JSON.parse(body)).toEqual({
                     data: {}
                 });
                 done();
