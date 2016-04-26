@@ -111,7 +111,7 @@ describe('Response from', function () {
         });
     });
 
-    xdescribe('route with template', function () {
+    describe('route with template', function () {
         it('returns status code 200', function (done) {
             request.get(getAbsoluteURL('/route-with-template-without-format/'), function (error, response) {
                 expect(response.statusCode).toBe(200);
@@ -119,9 +119,9 @@ describe('Response from', function () {
             });
         });
 
-        it('returns \'Hello, World!\'', function (done) {
+        it('returns "Hello, World!"', function (done) {
             request.get(getAbsoluteURL('/route-with-template-without-format/'), function (error, response, body) {
-                expect(body).toMatch('Hello, World!');
+                expect(body).toBe('Hello, World!');
                 done();
             });
         });
