@@ -1,13 +1,13 @@
 {
     "external_route_simple": {
-        "path": "/route-simple/",
+        "path": "/external-route-simple/",
         "defaults": {
             "_controller": "controllers/default.js"
         }
     },
 
     "external_route_with_param": {
-        "path": "/route-with-param/{param}/",
+        "path": "/external-route-with-param/{param}/",
         "defaults": {
             "_controller": "controllers/default.js",
             "param": "val1"
