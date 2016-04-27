@@ -211,5 +211,22 @@ describe('Response from', function () {
         });
     });
 
-    // @todo: add tests for external routes
+    // Routes from external_routing.json
+    describe('simple route with requirement attributes only', function () {
+        it('returns status code 200', function (done) {
+            request.get(getAbsoluteURL('/external-route-simple/'), function (error, response) {
+                expect(response.statusCode).toBe(200);
+                done();
+            });
+        });
+
+        it('returns JSON', function (done) {
+            request.get(getAbsoluteURL('/external-route-simple/'), function (error, response, body) {
+                expect(JSON.parse(body)).toEqual({
+                    data: {}
+                });
+                done();
+            });
+        });
+    });
 });
