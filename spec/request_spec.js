@@ -33,6 +33,9 @@ function getAbsoluteURL(path) {
     });
 }
 
+/**
+ * @returns {function}
+ */
 var counter = (function () {
     var count = 0;
 
@@ -42,16 +45,16 @@ var counter = (function () {
 }())
 
 describe('Response from', function () {
-    // Start server before each test
     beforeEach(function () {
+        // Start server before each test
         this.server = app.listen(PORT, function () {
             this._id = counter();
-            console.log('[' + this._id + '] expressjs server listening on port ' + PORT + '.');
+            console.log('\n[' + this._id + '] expressjs server listening on port ' + PORT + '.');
         });
     });
 
-    // Stop server after each test
     afterEach(function (done) {
+        // Stop server after each test
         this.server.close(function () {
             console.log('[' + this._id + '] expressjs server on port ' + PORT + ' was stopped!');
             done();
