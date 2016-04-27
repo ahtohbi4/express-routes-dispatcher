@@ -212,7 +212,7 @@ describe('Response from', function () {
     });
 
     // Routes from external_routing.json
-    describe('simple route with requirement attributes only', function () {
+    describe('simple external route with requirement attributes only', function () {
         it('returns status code 200', function (done) {
             request.get(getAbsoluteURL('/external-route-simple/'), function (error, response) {
                 expect(response.statusCode).toBe(200);
@@ -225,6 +225,22 @@ describe('Response from', function () {
                 expect(JSON.parse(body)).toEqual({
                     data: {}
                 });
+                done();
+            });
+        });
+    });
+
+    describe('external route with param', function () {
+        it('returns status code 200 for matched "val1"', function (done) {
+            request.get(getAbsoluteURL('/external-route-with-param/val1/'), function (error, response) {
+                expect(response.statusCode).toBe(200);
+                done();
+            });
+        });
+
+        it('returns "Parameter from URL is \'val1\'"', function (done) {
+            request.get(getAbsoluteURL('/external-route-with-param/val1/'), function (error, response, body) {
+                expect(body).toBe('Parameter from URL is \'val1\'');
                 done();
             });
         });
