@@ -80,7 +80,7 @@ describe('Response from', function () {
 
         it('returns error message', function (done) {
             request.get(getAbsoluteURL('/route-without-controller/'), function (error, response, body) {
-                expect(body).toMatch(/Could not load controller &quot;&quot; for route &quot;route_without_controller&quot;./i);
+                expect(body).toMatch(/Could not load controller &quot;&quot; for route &quot;route_without_controller&quot;\./i);
                 done();
             });
         });
