@@ -62,7 +62,7 @@ class Router {
         this.routeMap = {};
         this._normalizeRoutesMap(this._getRoutesFromFile(this.file));
 
-        for (var name in this.routeMap) {
+        for (let name in this.routeMap) {
             this._applyRoute(this.routeMap[name]);
         }
 
@@ -87,14 +87,14 @@ class Router {
      * @private
      */
     _normalizeRoutesMap(routes, prefix, defaults, requirements) {
-        var prefix = prefix || '',
-            defaults = defaults || {},
-            requirements = requirements || {};
+        prefix = prefix || '';
+        defaults = defaults || {};
+        requirements = requirements || {};
 
-        for (var name in routes) {
-            var route = routes[name],
-                routeDefaults = _.merge({}, defaults, (route.defaults || {})),
-                routeRequirements = _.merge({}, requirements, (route.requirements || {}));
+        for (let name in routes) {
+            let route = routes[name];
+            let routeDefaults = _.merge({}, defaults, (route.defaults || {}));
+            let routeRequirements = _.merge({}, requirements, (route.requirements || {}));
 
             if (route.resource !== undefined) {
                 this._normalizeRoutesMap(this._getRoutesFromFile(route.resource), (prefix + (route.prefix || '')), routeDefaults, routeRequirements);
@@ -129,7 +129,7 @@ class Router {
      * @private
      */
     _applyRoute(route) {
-        var methods = this._getMethods(route);
+        let methods = this._getMethods(route);
 
         methods.forEach((method) => {
             this.app[method](this._getPath(route), (req, res) => {
@@ -158,10 +158,10 @@ class Router {
      * @private
      */
     _getPath(route) {
-        var result;
+        let result;
 
         result = route.path.replace(this.PARAM_PATTERN, (match, name) => {
-            var pattern = (typeof route.requirements[name] !== 'undefined') ? `(${route.requirements[name]})` : '';
+            let pattern = (typeof route.requirements[name] !== 'undefined') ? `(${route.requirements[name]})` : '';
 
             return `:${name}${pattern}`;
         });
@@ -176,8 +176,8 @@ class Router {
      * @private
      */
     _getMethods(route) {
-        var result,
-            methods = route.methods || ['all'];
+        let result;
+        let methods = route.methods || ['all'];
 
         if (!Array.isArray(methods)) {
             result = [methods];
@@ -200,9 +200,9 @@ class Router {
      * @private
      */
     _getController(route) {
-        var result;
-        var controller = route.defaults._controller || '';
-        var controllerPath = path.join(this.baseDir, controller);
+        let result;
+        let controller = route.defaults._controller || '';
+        let controllerPath = path.join(this.baseDir, controller);
 
         try {
             result = require(controllerPath);
@@ -220,8 +220,8 @@ class Router {
      * @private
      */
     _getFormat(route) {
-        var result;
-        var template = this._getTemplate(route);
+        let result;
+        let template = this._getTemplate(route);
 
         if (route.defaults.hasOwnProperty(_format) && mime.lookup(this.defaults._format)) {
             if (typeof template !== 'undefined') {
@@ -245,7 +245,7 @@ class Router {
      * @private
      */
     _getTemplate(route) {
-        var result;
+        let result;
 
         result = route.defaults._template;
 
@@ -296,7 +296,7 @@ class Router {
      * @public
      */
     generate(routeName, attributes, suffix) {
-        var result;
+        let result;
 
         if (!this.routeMap.hasOwnProperty(routeName)) {
             throw new Error(`Route name "${routeName}" is undefined.`);
@@ -308,9 +308,9 @@ class Router {
             throw new Error(`Attributes should to be an Object.`);
         }
 
-        var protocol,
-            host,
-            port;
+        let protocol;
+        let host;
+        let port;
 
         if (attributes.hasOwnProperty('_protocol') || attributes.hasOwnProperty('_host') || attributes.hasOwnProperty('_port') || attributes.hasOwnProperty('_absolute')) {
             protocol = attributes['_protocol'] || this.protocol;
@@ -335,18 +335,18 @@ class Router {
             throw new Error('Suffix should to be a String.');
         }
 
-        var route = this.routeMap[routeName];
+        let route = this.routeMap[routeName];
 
         result = url.format({
             protocol: protocol,
             hostname: host,
             port: port,
             pathname: route.path.replace(this.PARAM_PATTERN, (match, name) => {
-                var requirements = new RegExp(route.requirements[name] || '.*');
+                let requirements = new RegExp(route.requirements[name] || '.*');
 
                 if (attributes.hasOwnProperty(name)) {
                     if (requirements.test(attributes[name])) {
-                        var value = attributes[name];
+                        let value = attributes[name];
                         attributes = _.omit(attributes, name);
 
                         return value;
