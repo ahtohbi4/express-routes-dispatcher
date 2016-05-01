@@ -38,8 +38,8 @@ function getAbsoluteURL(path) {
 /**
  * @returns {function}
  */
-var counter = (function () {
-    var count = 0;
+const counter = (() => {
+    let count = 0;
 
     return function () {
         return count++;
