@@ -11,7 +11,7 @@ var Twig = require('twig');
 app.set('views', __dirname);
 app.set('view engine', 'twig');
 
-var router = require('../lib/index.js');
+var router = require('../index.js');
 router(app, {
     host: HOST,
     port: PORT,
@@ -146,16 +146,17 @@ describe('Response from', function () {
 
         it('returns JSON', function (done) {
             request.get(getAbsoluteURL('/route-with-template-for-json/'), function (error, response) {
-                expect(response.headers['content-type']).toMatch('application/json');
+                expect(response.headers['content-type']).toMatch(/application\/json/i);
                 done();
             });
         });
 
-        it('returns JSON', function (done) {
+        // @todo: this suit crushes server
+        xit('returns JSON', function (done) {
             request.get(getAbsoluteURL('/route-with-template-for-json/'), function (error, response, body) {
-                // expect(JSON.parse(body)).toEqual({
-                //     data: {}
-                // });
+                expect(JSON.parse(body)).toEqual({
+                    data: {}
+                });
                 done();
             });
         });

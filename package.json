@@ -2,7 +2,6 @@
   "name": "express-routes-dispatcher",
   "version": "0.0.0",
   "description": "Routing for expressjs",
-  "main": "./lib/index.js",
   "scripts": {
     "test": "jasmine-node --color spec/"
   },
@@ -23,6 +22,7 @@
   },
   "homepage": "https://github.com/ahtohbi4/express-routes-dispatcher#readme",
   "dependencies": {
+    "babel-core": "^6.7.7",
     "express": "^4.13.3",
     "lodash": "^4.0.0"
   },
