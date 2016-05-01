@@ -41,63 +41,63 @@ function getAbsoluteURL(path) {
 const counter = (() => {
     let count = 0;
 
-    return function () {
+    return () => {
         return count++;
     };
 }())
 
-describe('Response from', function () {
-    beforeEach(function () {
+describe('Response from', () => {
+    beforeEach(() => {
         // Start server before each test
-        this.server = app.listen(PORT, function () {
+        this.server = app.listen(PORT, () => {
             this._id = counter();
             console.log('\n[' + this._id + '] expressjs server listening on port ' + PORT + '.');
         });
     });
 
-    afterEach(function (done) {
+    afterEach((done) => {
         // Stop server after each test
-        this.server.close(function () {
+        this.server.close(() => {
             console.log('[' + this._id + '] expressjs server on port ' + PORT + ' was stopped!');
             done();
         });
     });
 
-    describe('non-existing URL', function () {
-        it('returns status code 404', function (done) {
-            request.get(getAbsoluteURL('/non-existent-page/'), function (error, response) {
+    describe('non-existing URL', () => {
+        it('returns status code 404', (done) => {
+            request.get(getAbsoluteURL('/non-existent-page/'), (error, response) => {
                 expect(response.statusCode).toBe(404);
                 done();
             });
         });
     });
 
-    describe('route without requirement attribute "defaults._controller"', function () {
-        it('returns status code 500', function (done) {
-            request.get(getAbsoluteURL('/route-without-controller/'), function (error, response) {
+    describe('route without requirement attribute "defaults._controller"', () => {
+        it('returns status code 500', (done) => {
+            request.get(getAbsoluteURL('/route-without-controller/'), (error, response) => {
                 expect(response.statusCode).toBe(500);
                 done();
             });
         });
 
-        it('returns error message', function (done) {
-            request.get(getAbsoluteURL('/route-without-controller/'), function (error, response, body) {
+        it('returns error message', (done) => {
+            request.get(getAbsoluteURL('/route-without-controller/'), (error, response, body) => {
                 expect(body).toMatch(/Could not load controller &quot;&quot; for route &quot;route_without_controller&quot;\./i);
                 done();
             });
         });
     });
 
-    describe('simple route with requirement attributes only', function () {
-        it('returns status code 200', function (done) {
-            request.get(getAbsoluteURL('/route-simple/'), function (error, response) {
+    describe('simple route with requirement attributes only', () => {
+        it('returns status code 200', (done) => {
+            request.get(getAbsoluteURL('/route-simple/'), (error, response) => {
                 expect(response.statusCode).toBe(200);
                 done();
             });
         });
 
-        it('returns JSON', function (done) {
-            request.get(getAbsoluteURL('/route-simple/'), function (error, response, body) {
+        it('returns JSON', (done) => {
+            request.get(getAbsoluteURL('/route-simple/'), (error, response, body) => {
                 expect(JSON.parse(body)).toEqual({
                     data: {}
                 });
@@ -106,56 +106,56 @@ describe('Response from', function () {
         });
     });
 
-    describe('route for HTML but without template', function () {
-        it('returns status code 500', function (done) {
-            request.get(getAbsoluteURL('/route-for-html-without-template/'), function (error, response) {
+    describe('route for HTML but without template', () => {
+        it('returns status code 500', (done) => {
+            request.get(getAbsoluteURL('/route-for-html-without-template/'), (error, response) => {
                 expect(response.statusCode).toBe(500);
                 done();
             });
         });
 
-        it('returns error message', function (done) {
-            request.get(getAbsoluteURL('/route-for-html-without-template/'), function (error, response, body) {
+        it('returns error message', (done) => {
+            request.get(getAbsoluteURL('/route-for-html-without-template/'), (error, response, body) => {
                 expect(body).toMatch(/Template for route "route_for_html_without_template" is not defined\./i);
                 done();
             });
         });
     });
 
-    describe('route with template', function () {
-        it('returns status code 200', function (done) {
-            request.get(getAbsoluteURL('/route-with-template-without-format/'), function (error, response) {
+    describe('route with template', () => {
+        it('returns status code 200', (done) => {
+            request.get(getAbsoluteURL('/route-with-template-without-format/'), (error, response) => {
                 expect(response.statusCode).toBe(200);
                 done();
             });
         });
 
-        it('returns "Hello, World!"', function (done) {
-            request.get(getAbsoluteURL('/route-with-template-without-format/'), function (error, response, body) {
+        it('returns "Hello, World!"', (done) => {
+            request.get(getAbsoluteURL('/route-with-template-without-format/'), (error, response, body) => {
                 expect(body).toBe('Hello, World!');
                 done();
             });
         });
     });
 
-    describe('route for JSON with template', function () {
-        it('returns status code 200', function (done) {
-            request.get(getAbsoluteURL('/route-with-template-for-json/'), function (error, response) {
+    describe('route for JSON with template', () => {
+        it('returns status code 200', (done) => {
+            request.get(getAbsoluteURL('/route-with-template-for-json/'), (error, response) => {
                 expect(response.statusCode).toBe(200);
                 done();
             });
         });
 
-        it('returns JSON', function (done) {
-            request.get(getAbsoluteURL('/route-with-template-for-json/'), function (error, response) {
+        it('returns JSON', (done) => {
+            request.get(getAbsoluteURL('/route-with-template-for-json/'), (error, response) => {
                 expect(response.headers['content-type']).toMatch(/application\/json/i);
                 done();
             });
         });
 
         // @todo: this suit crushes server
-        xit('returns JSON', function (done) {
-            request.get(getAbsoluteURL('/route-with-template-for-json/'), function (error, response, body) {
+        xit('returns JSON', (done) => {
+            request.get(getAbsoluteURL('/route-with-template-for-json/'), (error, response, body) => {
                 expect(JSON.parse(body)).toEqual({
                     data: {}
                 });
@@ -164,53 +164,53 @@ describe('Response from', function () {
         });
     });
 
-    describe('route with param', function () {
-        it('returns status code 404 for not matched "val3"', function (done) {
-            request.get(getAbsoluteURL('/route-with-param/val3/'), function (error, response) {
+    describe('route with param', () => {
+        it('returns status code 404 for not matched "val3"', (done) => {
+            request.get(getAbsoluteURL('/route-with-param/val3/'), (error, response) => {
                 expect(response.statusCode).toBe(404);
                 done();
             });
         });
 
-        it('returns status code 200 for matched "val1"', function (done) {
-            request.get(getAbsoluteURL('/route-with-param/val1/'), function (error, response) {
+        it('returns status code 200 for matched "val1"', (done) => {
+            request.get(getAbsoluteURL('/route-with-param/val1/'), (error, response) => {
                 expect(response.statusCode).toBe(200);
                 done();
             });
         });
 
-        it('returns "Parameter from URL is \'val1\'"', function (done) {
-            request.get(getAbsoluteURL('/route-with-param/val1/'), function (error, response, body) {
+        it('returns "Parameter from URL is \'val1\'"', (done) => {
+            request.get(getAbsoluteURL('/route-with-param/val1/'), (error, response, body) => {
                 expect(body).toBe('Parameter from URL is \'val1\'');
                 done();
             });
         });
 
-        it('returns status code 200 for matched "val2"', function (done) {
-            request.get(getAbsoluteURL('/route-with-param/val2/'), function (error, response) {
+        it('returns status code 200 for matched "val2"', (done) => {
+            request.get(getAbsoluteURL('/route-with-param/val2/'), (error, response) => {
                 expect(response.statusCode).toBe(200);
                 done();
             });
         });
 
-        it('returns "Parameter from URL is \'val2\'"', function (done) {
-            request.get(getAbsoluteURL('/route-with-param/val2/'), function (error, response, body) {
+        it('returns "Parameter from URL is \'val2\'"', (done) => {
+            request.get(getAbsoluteURL('/route-with-param/val2/'), (error, response, body) => {
                 expect(body).toBe('Parameter from URL is \'val2\'');
                 done();
             });
         });
     });
 
-    describe('route Only POST method is allowed', function () {
-        it('returns status code 405 for GET', function (done) {
-            request.get(getAbsoluteURL('/only-post-method-allowing/'), function (error, response) {
+    describe('route Only POST method is allowed', () => {
+        it('returns status code 405 for GET', (done) => {
+            request.get(getAbsoluteURL('/only-post-method-allowing/'), (error, response) => {
                 expect(response.statusCode).toBe(405);
                 done();
             });
         });
 
-        it('returns status code 200 for POST', function (done) {
-            request.get(getAbsoluteURL('/only-post-method-allowing/'), function (error, response) {
+        it('returns status code 200 for POST', (done) => {
+            request.get(getAbsoluteURL('/only-post-method-allowing/'), (error, response) => {
                 expect(response.statusCode).toBe(200);
                 done();
             });
@@ -218,16 +218,16 @@ describe('Response from', function () {
     });
 
     // Routes from external_routing.json
-    describe('simple external route with requirement attributes only', function () {
-        it('returns status code 200', function (done) {
-            request.get(getAbsoluteURL('/external-route-simple/'), function (error, response) {
+    describe('simple external route with requirement attributes only', () => {
+        it('returns status code 200', (done) => {
+            request.get(getAbsoluteURL('/external-route-simple/'), (error, response) => {
                 expect(response.statusCode).toBe(200);
                 done();
             });
         });
 
-        it('returns JSON', function (done) {
-            request.get(getAbsoluteURL('/external-route-simple/'), function (error, response, body) {
+        it('returns JSON', (done) => {
+            request.get(getAbsoluteURL('/external-route-simple/'), (error, response, body) => {
                 expect(JSON.parse(body)).toEqual({
                     data: {}
                 });
@@ -236,16 +236,16 @@ describe('Response from', function () {
         });
     });
 
-    describe('external route with param', function () {
-        it('returns status code 200 for matched "val1"', function (done) {
-            request.get(getAbsoluteURL('/external-route-with-param/val1/'), function (error, response) {
+    describe('external route with param', () => {
+        it('returns status code 200 for matched "val1"', (done) => {
+            request.get(getAbsoluteURL('/external-route-with-param/val1/'), (error, response) => {
                 expect(response.statusCode).toBe(200);
                 done();
             });
         });
 
-        it('returns "Parameter from URL is \'val1\'"', function (done) {
-            request.get(getAbsoluteURL('/external-route-with-param/val1/'), function (error, response, body) {
+        it('returns "Parameter from URL is \'val1\'"', (done) => {
+            request.get(getAbsoluteURL('/external-route-with-param/val1/'), (error, response, body) => {
                 expect(body).toBe('Parameter from URL is \'val1\'');
                 done();
             });
