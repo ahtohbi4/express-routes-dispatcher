@@ -1,17 +1,19 @@
-var HOST = 'localhost';
-var PORT = 1337;
+'use strict';
 
-var request = require('request');
-var url = require('url');
+const HOST = 'localhost';
+const PORT = 1337;
 
-var express = require('express');
-var app = express();
+const request = require('request');
+const url = require('url');
 
-var Twig = require('twig');
+const express = require('express');
+const app = express();
+
+const Twig = require('twig');
 app.set('views', __dirname);
 app.set('view engine', 'twig');
 
-var router = require('../index.js');
+const router = require('../index.js');
 router(app, {
     host: HOST,
     port: PORT,
