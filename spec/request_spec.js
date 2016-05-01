@@ -114,7 +114,7 @@ describe('Response from', function () {
 
         it('returns error message', function (done) {
             request.get(getAbsoluteURL('/route-for-html-without-template/'), function (error, response, body) {
-                expect(body).toMatch(/Template for route "route_for_html_without_template" is not defined./i);
+                expect(body).toMatch(/Template for route "route_for_html_without_template" is not defined\./i);
                 done();
             });
         });
