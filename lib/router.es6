@@ -93,8 +93,11 @@ class Router {
 
         for (let name in routes) {
             let route = routes[name];
-            let routeDefaults = _.merge({}, defaults, (route.defaults || {}));
-            let routeRequirements = _.merge({}, requirements, (route.requirements || {}));
+            let routeDefaults = {};
+            let routeRequirements = {};
+
+            Object.assign(routeDefaults, defaults, (route.defaults || {}));
+            Object.assign(routeRequirements, requirements, (route.requirements || {}));
 
             if (route.resource !== undefined) {
                 this._normalizeRoutesMap(this._getRoutesFromFile(route.resource), (prefix + (route.prefix || '')), routeDefaults, routeRequirements);
