@@ -122,7 +122,15 @@ class Router {
      * @private
      */
     _getRoutesFromFile(file) {
-        return JSON.parse(fs.readFileSync(path.join(this.baseDir, file), 'utf8'));
+        let result;
+
+        try {
+            result = JSON.parse(fs.readFileSync(path.join(this.baseDir, file), 'utf8'));
+        } catch (e) {
+            throw new Error(e);
+        }
+
+        return result;
     }
 
     /**
