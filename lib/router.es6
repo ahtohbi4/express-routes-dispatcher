@@ -13,12 +13,12 @@ class Router {
     /**
      * @constructs
      * @param {Express} app
-     * @param {object} options
-     * @param {string} options.file
-     * @param {string} [options.baseDir=__dirname]
      * @throws Error if parameter app is not defined
      * @throws Error if parameter app is not express() function
+     * @param {object} options
+     * @param {string} options.file
      * @throws Error if parameter file is not defined
+     * @param {string} [options.baseDir=__dirname]
      */
     constructor() {
         return (app, options) => {
