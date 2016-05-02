@@ -19,6 +19,7 @@ class Router {
      * @param {string} options.file
      * @throws Error if parameter file is not defined
      * @param {string} [options.baseDir=__dirname]
+     * @param {string} [options.debug=false]
      */
     constructor() {
         return (app, options) => {
@@ -50,6 +51,9 @@ class Router {
             // @member {string} [baseDir=__dirname]
             this.baseDir = options.baseDir || __dirname;
 
+            // @member {boolean} [debug=false]
+            this.debug = options.debug || false;
+
             this._start();
         };
     }
@@ -66,11 +70,12 @@ class Router {
             this._applyRoute(this.routeMap[name]);
         }
 
-        // URI to output routeMap for developing
-        // @todo: hide from production mode
-        this.app.get('/_dev/routes/', (req, res) => {
-            res.json(this.routeMap);
-        });
+        if (this.debug) {
+            // URI to output routeMap for developing
+            this.app.get('/_dev/routes/', (req, res) => {
+                res.json(this.routeMap);
+            });
+        }
 
         this.app.use((req, res) => {
             this.sendNotFaund(req, res);
