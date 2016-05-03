@@ -1,0 +1,19 @@
+{
+    "external_localized_route_simple": {
+        "path": "/external-route-simple/",
+        "defaults": {
+            "_controller": "controllers/default.js"
+        }
+    },
+
+    "external_localized_route_with_param": {
+        "path": "/external-route-with-param/{param}/",
+        "defaults": {
+            "_controller": "controllers/default.js",
+            "param": "val1"
+        },
+        "requirements": {
+            "param": "val1|val2"
+        }
+    }
+}

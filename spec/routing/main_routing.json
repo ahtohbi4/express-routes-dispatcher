@@ -62,7 +62,7 @@
     },
 
     "external_routing_with_param": {
-        "prefix": "/external/{param}",
-        "resource": "routing/external_routing.json"
+        "prefix": "/{_locale}/external",
+        "resource": "routing/external_localized_routing.json"
     }
 }
