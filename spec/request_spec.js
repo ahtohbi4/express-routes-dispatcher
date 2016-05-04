@@ -44,7 +44,7 @@ const counter = (() => {
     return () => {
         return count++;
     };
-}())
+}());
 
 describe('Response from', () => {
     beforeEach(() => {

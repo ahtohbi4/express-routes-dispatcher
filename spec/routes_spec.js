@@ -43,7 +43,7 @@ const counter = (() => {
     return () => {
         return count++;
     };
-}())
+}());
 
 describe('Routes maps', () => {
     beforeEach(() => {
