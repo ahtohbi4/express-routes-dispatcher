@@ -50,14 +50,14 @@ describe('Routes maps', () => {
         // Start server before each test
         this.server = app.listen(PORT, () => {
             this._id = counter();
-            console.log('\n[' + this._id + '] expressjs server listening on port ' + PORT + '.');
+            console.log(`\n[${this._id}] expressjs server listening on port ${PORT}.`);
         });
     });
 
     afterEach((done) => {
         // Stop server after each test
         this.server.close(() => {
-            console.log('[' + this._id + '] expressjs server on port ' + PORT + ' was stopped!');
+            console.log(`[${this._id}] expressjs server on port ${PORT} was stopped!`);
             done();
         });
     });
@@ -65,7 +65,7 @@ describe('Routes maps', () => {
     it('compiled compare with actual', (done) => {
         request.get(getAbsoluteURL('/_dev/routes/'), (error, response, body) => {
             let actualRouteMap = JSON.parse(body);
-            let expectedRouteMap = JSON.parse(fs.readFileSync(path.resolve(__dirname + '/routing/expected_routes_map.json'), 'utf8'));
+            let expectedRouteMap = JSON.parse(fs.readFileSync(path.resolve(`${__dirname}/routing/expected_routes_map.json`), 'utf8'));
 
             expect(Object.keys(actualRouteMap).length).toEqual(Object.keys(expectedRouteMap).length);
 
