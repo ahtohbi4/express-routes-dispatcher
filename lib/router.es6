@@ -107,13 +107,13 @@ class Router {
             if (route.resource !== undefined) {
                 this._normalizeRoutesMap(this._getRoutesFromFile(route.resource), (prefix + (route.prefix || '')), routeDefaults, routeRequirements);
             } else {
-                Object.assign(this.routeMap[name] = {}, {
+                Object.assign(this.routeMap[name] = {}, route, {
                     name: name,
                     path: prefix + route.path,
                     methods: route.methods || ['all'],
                     defaults: routeDefaults,
                     requirements: routeRequirements
-                }, route);
+                });
             }
         }
 
