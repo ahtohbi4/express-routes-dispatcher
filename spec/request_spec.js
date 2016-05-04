@@ -51,14 +51,14 @@ describe('Response from', () => {
         // Start server before each test
         this.server = app.listen(PORT, () => {
             this._id = counter();
-            console.log('\n[' + this._id + '] expressjs server listening on port ' + PORT + '.');
+            console.log(`\n[${this._id}] expressjs server listening on port ${PORT}.`);
         });
     });
 
     afterEach((done) => {
         // Stop server after each test
         this.server.close(() => {
-            console.log('[' + this._id + '] expressjs server on port ' + PORT + ' was stopped!');
+            console.log(`[${this._id}] expressjs server on port ${PORT} was stopped!`);
             done();
         });
     });
