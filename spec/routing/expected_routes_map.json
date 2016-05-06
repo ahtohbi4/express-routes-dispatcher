@@ -93,8 +93,7 @@
         "name": "external_route_simple",
         "path": "/external/external-route-simple/",
         "defaults": {
-            "_controller": "controllers/queryResolver.js",
-            "_template": "views/queryResolver.html.twig"
+            "_controller": "controllers/queryResolver.js"
         },
         "requirements": {},
         "methods": [
