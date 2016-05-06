@@ -179,9 +179,9 @@ describe('Response from', () => {
             });
         });
 
-        it('returns "Parameter from URL is \'val1\'"', (done) => {
+        it('returns "Parameter from URL is "val1"', (done) => {
             request.get(getAbsoluteURL('/route-with-param/val1/'), (error, response, body) => {
-                expect(body).toBe('Parameter from URL is \'val1\'');
+                expect(body).toMatch('Parameter from URL is "val1"');
                 done();
             });
         });
@@ -193,9 +193,9 @@ describe('Response from', () => {
             });
         });
 
-        it('returns "Parameter from URL is \'val2\'"', (done) => {
+        it('returns "Parameter from URL is "val2"', (done) => {
             request.get(getAbsoluteURL('/route-with-param/val2/'), (error, response, body) => {
-                expect(body).toBe('Parameter from URL is \'val2\'');
+                expect(body).toMatch('Parameter from URL is "val2"');
                 done();
             });
         });
@@ -244,9 +244,9 @@ describe('Response from', () => {
             });
         });
 
-        it('returns "Parameter from URL is \'val1\'"', (done) => {
+        it('returns "Parameter from URL is "val1"', (done) => {
             request.get(getAbsoluteURL('/external-route-with-param/val1/'), (error, response, body) => {
-                expect(body).toBe('Parameter from URL is \'val1\'');
+                expect(body).toMatch('Parameter from URL is "val1"');
                 done();
             });
         });
