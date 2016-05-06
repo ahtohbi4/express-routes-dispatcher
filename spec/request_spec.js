@@ -154,7 +154,7 @@ describe('Response from', () => {
         });
 
         // @todo: this suit crushes server
-        xit('returns JSON', (done) => {
+        it('returns JSON', (done) => {
             request.get(getAbsoluteURL('/route-with-template-for-json/'), (error, response, body) => {
                 expect(JSON.parse(body)).toEqual({
                     data: {}
