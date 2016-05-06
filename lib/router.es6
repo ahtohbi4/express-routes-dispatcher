@@ -149,11 +149,20 @@ class Router {
 
         methods.forEach((method) => {
             this.app[method](this._getPath(route), (req, res) => {
-                if (this._getTemplate(route)) {
-                    res.render(this._getTemplate(route), this._getController(route)(req, res, this));
-                } else {
-                    res.send(this._getController(route)(req, res, this));
-                }
+                let formats = {};
+                this._getFormatsAvailable(route).map((format) => {
+                    formats[format] = () => {
+                        res.type(format);
+
+                        if (this._getFormat(route) === 'json' || this._getTemplate(route) === undefined) {
+                            res.send(this._getController(route)(req, res, this));
+                        } else {
+                            res.render(this._getTemplate(route), this._getController(route)(req, res, this));
+                        }
+                    };
+                }); //res.json(this._getFormatsAvailable(route));
+
+                res.format(formats);
             });
         });
 
@@ -239,7 +248,7 @@ class Router {
         let result;
         let template = this._getTemplate(route);
 
-        if (route.defaults.hasOwnProperty(_format) && mime.lookup(this.defaults._format)) {
+        if (route.defaults.hasOwnProperty('_format') && mime.lookup(route.defaults._format)) {
             if (typeof template !== 'undefined') {
                 result = route.defaults._format;
             } else {
@@ -249,6 +258,24 @@ class Router {
             result = 'html';
         } else {
             result = 'json';
+        }
+
+        return result;
+    }
+
+    /**
+     * @method
+     * @param {object} router
+     * @returns {array}
+     * @private
+     */
+    _getFormatsAvailable(route) {
+        let result = [];
+
+        result.push(this._getFormat(route));
+
+        if (route.requirements._format !== undefined) {
+            result.push(route.requirements._format.split('|'));
         }
 
         return result;
