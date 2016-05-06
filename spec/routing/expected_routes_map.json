@@ -65,7 +65,8 @@
         "name": "route_with_param",
         "path": "/route-with-param/{param}/",
         "defaults": {
-            "_controller": "controllers/default.js",
+            "_controller": "controllers/queryResolver.js",
+            "_template": "views/queryResolver.html.twig",
             "param": "val1"
         },
         "requirements": {
@@ -92,7 +93,8 @@
         "name": "external_route_simple",
         "path": "/external/external-route-simple/",
         "defaults": {
-            "_controller": "controllers/default.js"
+            "_controller": "controllers/queryResolver.js",
+            "_template": "views/queryResolver.html.twig"
         },
         "requirements": {},
         "methods": [
@@ -104,7 +106,8 @@
         "name": "external_route_with_param",
         "path": "/external/external-route-with-param/{param}/",
         "defaults": {
-            "_controller": "controllers/default.js",
+            "_controller": "controllers/queryResolver.js",
+            "_template": "views/queryResolver.html.twig",
             "param": "val1"
         },
         "requirements": {
