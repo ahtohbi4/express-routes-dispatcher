@@ -203,14 +203,14 @@ describe('Response from', () => {
 
     describe('route Only POST method is allowed', () => {
         it('returns status code 405 for GET', (done) => {
-            request.get(getAbsoluteURL('/only-post-method-allowing/'), (error, response) => {
+            request.post(getAbsoluteURL('/only-post-method-allowing/'), (error, response) => {
                 expect(response.statusCode).toBe(405);
                 done();
             });
         });
 
         it('returns status code 200 for POST', (done) => {
-            request.get(getAbsoluteURL('/only-post-method-allowing/'), (error, response) => {
+            request.post(getAbsoluteURL('/only-post-method-allowing/'), (error, response) => {
                 expect(response.statusCode).toBe(200);
                 done();
             });
