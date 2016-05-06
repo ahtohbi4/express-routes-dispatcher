@@ -39,7 +39,7 @@
         "path": "/route-with-template-without-format/",
         "defaults": {
             "_controller": "controllers/default.js",
-            "_template": "views/hello_world.html.twig"
+            "_template": "views/default.html.twig"
         },
         "requirements": {},
         "methods": [
@@ -52,7 +52,7 @@
         "path": "/route-with-template-for-json/",
         "defaults": {
             "_controller": "controllers/default.js",
-            "_template": "views/hello_world.html.twig",
+            "_template": "views/default.html.twig",
             "_format": "json"
         },
         "requirements": {},
