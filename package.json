@@ -1,6 +1,6 @@
 {
   "name": "express-routes-dispatcher",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Routing for expressjs",
   "scripts": {
     "test": "jasmine-node --color spec/"
