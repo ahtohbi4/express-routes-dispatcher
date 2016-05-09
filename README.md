@@ -61,6 +61,11 @@ Usage
 }
 ```
 
+Options
+--
+
+_Comming soon…_
+
 Tests
 --
 
