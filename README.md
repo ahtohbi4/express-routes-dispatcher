@@ -30,8 +30,67 @@ $ npm install express-routes-dispatcher --save-dev
 Usage
 --
 
+The module which allows to organize simple and clear MVC-architecture in your Node.js application.
+
+For example, there are a page with list of articles `/articles/` and pages with one article (for example, `/articles/some-aticle-page/`). In this case, application architecture might look like:
+
+```
+app/
+    config/
+        routes.json
+    modules/
+        Article/
+            controllers/
+                item.js
+                list.js
+            models/
+                …
+            views/
+                item.html.twig
+                list.html.twig
+```
+
+File `routes.json` describes the URIs, controllers for processing requests by this URIs and templates to returning response data by the controller:
+
 ```json
-// app/config/routing.json
+// app/config/routes.json
+{
+    "articles_list": {
+        "path": "/articles/",
+        "defaults": {
+            "_controller": "modules/Article/controllers/list.js",
+            "_template": "modules/Article/views/list.html.twig"
+        }
+    },
+    "articles_item": {
+        "path": "/articles/{alias}/",
+        "defaults": {
+            "_controller": "modules/Article/controllers/item.js",
+            "_template": "modules/Article/views/item.html.twig"
+        },
+        "requirements": {
+            "alias": "[a-zA-z\-_0-9]+"
+        }
+    }
+}
+```
+
+The controller is a ordinary JavaScript module ([Express.js middleware](http://expressjs.com/en/guide/using-middleware.html)), with two optional parameters `request` and` response`:
+
+```javascript
+module.exports = function (request, response) {
+    return {
+        data: {}
+    };
+};
+```
+
+Also it is possible to design separate modules, which in turn can be used in your other applications. For example, use them as Git's submodules and connect external routes of this module into their applications.
+
+Example of file `routes.json` of a project that uses a News module with its own routes:
+
+```json
+// app/config/routes.json
 {
     "welcome_page": {
         "path": "/",
@@ -54,8 +113,8 @@ Usage
     "list": {
         "path": "/",
         "defaults": {
-            "_controller": "modules/News/config/index.js",
-            "_template": "modules/News/views/pages/list.html.twig"
+            "_controller": "modules/News/controller/list.js",
+            "_template": "modules/News/views/list.html.twig"
         }
     }
 }
