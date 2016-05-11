@@ -69,7 +69,7 @@ File `routes.json` describes the URIs, controllers for processing requests by th
             "_template": "modules/Article/views/item.html.twig"
         },
         "requirements": {
-            "alias": "[a-zA-z\-_0-9]+"
+            "alias": "[a-zA-z-_0-9]+"
         }
     }
 }
