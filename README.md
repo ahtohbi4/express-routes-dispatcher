@@ -24,7 +24,7 @@ Installation
 --
 
 ```bash
-$ npm install express-routes-dispatcher --save-dev
+$ npm install express-routes-dispatcher --save
 ```
 
 Usage
@@ -36,6 +36,7 @@ For example, there are a page with list of articles `/articles/` and pages with 
 
 ```
 app/
+    app.js
     config/
         routes.json
     modules/
@@ -48,6 +49,20 @@ app/
             views/
                 item.html.twig
                 list.html.twig
+```
+
+Entry point is the `app.js`. All HTTP-requests server sends to it, and it, in turn, forwards them to the controllers.
+
+```javascript
+// app/app.js
+
+const express = require('express');
+const app = express();
+
+const router = require('express-routes-dispatcher');
+router(app, {
+    file: './config/routes.json'
+});
 ```
 
 File `routes.json` describes the URIs, controllers for processing requests by this URIs and templates to returning response data by the controller:
