@@ -139,7 +139,55 @@ Example of the external `modules/News/config/routing.json`:
 Options
 --
 
-_Comming soon…_
+To start the router, use function:
+
+```javascript
+const router = require('express-routes-dispatcher');
+router(app, {
+    file: './config/routes.json'
+});
+```
+
+with to required parameters:
+
+#### app
+
+_Required._
+
+Object of an Express application:
+
+```javascript
+// app/app.js
+
+const express = require('express');
+const app = express();
+```
+
+#### config
+
+_Required._
+
+Configuration of the router. Object with the next properties:
+
+#### file
+
+_Required._
+
+#### protocol
+
+_Default: 'http'_
+
+#### host
+
+#### port
+
+#### baseDir
+
+_Default: current directory_
+
+#### debug
+
+_Default: false_
 
 Tests
 --
