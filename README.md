@@ -68,7 +68,6 @@ router(app, {
 File `routes.json` describes the URIs, controllers for processing requests by this URIs and templates to returning response data by the controller:
 
 ```json
-// app/config/routes.json
 {
     "articles_list": {
         "path": "/articles/",
@@ -93,6 +92,8 @@ File `routes.json` describes the URIs, controllers for processing requests by th
 The controller is a ordinary JavaScript module ([Express.js middleware](http://expressjs.com/en/guide/using-middleware.html)), with two optional parameters `request` and` response`:
 
 ```javascript
+// modules/Article/controllers/list.js
+
 module.exports = function (request, response) {
     return {
         data: {}
@@ -102,10 +103,9 @@ module.exports = function (request, response) {
 
 Also it is possible to design separate modules, which in turn can be used in your other applications. For example, use them as Git's submodules and connect external routes of this module into their applications.
 
-Example of file `routes.json` of a project that uses a News module with its own routes:
+Example of file `app/config/routes.json` of a project that uses a News module with its own routes:
 
 ```json
-// app/config/routes.json
 {
     "welcome_page": {
         "path": "/",
@@ -122,8 +122,9 @@ Example of file `routes.json` of a project that uses a News module with its own 
 }
 ```
 
+Example of the external `modules/News/config/routing.json`:
+
 ```json
-// modules/News/config/routing.json
 {
     "list": {
         "path": "/",
