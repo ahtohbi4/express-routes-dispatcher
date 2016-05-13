@@ -89,7 +89,7 @@ File `routes.json` describes the URIs, controllers for processing requests by th
 }
 ```
 
-The controller is a ordinary JavaScript module ([Express.js middleware](http://expressjs.com/en/guide/using-middleware.html)), with two optional parameters `request` and` response`:
+The controller is a ordinary JavaScript module ([Express.js middleware](http://expressjs.com/en/guide/using-middleware.html)), with two optional parameters `request` and `response`:
 
 ```javascript
 // modules/Article/controllers/list.js
