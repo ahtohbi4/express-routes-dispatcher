@@ -9,7 +9,6 @@ const url = require('url');
 const express = require('express');
 const app = express();
 
-const Twig = require('twig');
 app.set('views', __dirname);
 app.set('view engine', 'twig');
 
