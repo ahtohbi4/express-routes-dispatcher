@@ -150,7 +150,9 @@ router(app, {
 
 with to required parameters:
 
-#### app _(Required)_
+#### app
+
+_Required_
 
 Object of an Express application:
 
@@ -161,11 +163,15 @@ const express = require('express');
 const app = express();
 ```
 
-#### config _(Required)_
+#### config
+
+_Required_
 
 Configuration of the router. Object with the next properties:
 
-#### file _(Required)_
+#### file
+
+_Required_
 
 String. Path to a main file of routes.
 
@@ -194,6 +200,37 @@ Base directory with resources, such as controllers or templates.
 _Default: false_
 
 Set `true` to switch on the debug mode. In this mode by URI `/_dev/routing/` you can watch normalized route's map of your application as single JSON view, comprising all external routes.
+
+Syntax of routes
+--
+
+#### _\<route name\>_
+
+#### path
+
+_Required if parameter `resource` is not defined_
+
+#### defaults
+
+_Required as a parent of required parameter `_controller`_
+
+Contains the following options:
+
+#### _controller
+
+_Required_
+
+#### _format
+
+#### _template
+
+#### _\<param from `path`\>_
+
+String.
+
+#### requirements
+
+For more details see tests in `spec/`.
 
 Tests
 --
