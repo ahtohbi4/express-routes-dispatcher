@@ -173,21 +173,33 @@ Configuration of the router. Object with the next properties:
 
 _Required._
 
+String. Path to a main file of routes.
+
 #### protocol
 
 _Default: 'http'_
 
+_Coming soon…_
+
 #### host
+
+_Coming soon…_
 
 #### port
 
+_Coming soon…_
+
 #### baseDir
 
-_Default: current directory_
+_Default: current script's directory_
+
+Base directory with resources, such as controllers or templates.
 
 #### debug
 
 _Default: false_
+
+Set `true` to switch on the debug mode. In this mode by URI `/_dev/routing/` you can watch normalized route's map of your application as single JSON view, comprising all external routes.
 
 Tests
 --
