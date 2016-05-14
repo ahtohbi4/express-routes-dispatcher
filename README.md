@@ -216,7 +216,7 @@ _Required_
 
 _Required as a parent of required parameter `_controller`_
 
-Contains the following options:
+Object. Contains the following options:
 
 #### _controller
 
@@ -224,13 +224,19 @@ _Required_
 
 #### _format
 
+String.
+
 #### _template
+
+String.
 
 #### _\<variable from `path`\>_
 
 String.
 
 #### requirements
+
+Object. Contains the following options:
 
 #### _format
 
