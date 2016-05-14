@@ -150,9 +150,7 @@ router(app, {
 
 with to required parameters:
 
-#### app
-
-_Required._
+#### app _(Required)_
 
 Object of an Express application:
 
@@ -163,15 +161,11 @@ const express = require('express');
 const app = express();
 ```
 
-#### config
-
-_Required._
+#### config _(Required)_
 
 Configuration of the router. Object with the next properties:
 
-#### file
-
-_Required._
+#### file _(Required)_
 
 String. Path to a main file of routes.
 
