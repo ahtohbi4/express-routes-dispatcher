@@ -226,7 +226,7 @@ _Required_
 
 #### _template
 
-#### _\<param from `path`\>_
+#### _\<variable from `path`\>_
 
 String.
 
@@ -234,7 +234,7 @@ String.
 
 #### _format
 
-#### _\<param from `path`\>_
+#### _\<variable from `path`\>_
 
 RegExp.
 
