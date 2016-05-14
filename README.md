@@ -201,14 +201,16 @@ _Default: false_
 
 Set `true` to switch on the debug mode. In this mode by URI `/_dev/routing/` you can watch normalized route's map of your application as single JSON view, comprising all external routes.
 
-Syntax of routes
+Syntax of inline routes
 --
 
 #### _\<route name\>_
 
+String. Should be unique, otherwise a last declared route with the same name will override earlier ones.
+
 #### path
 
-_Required if parameter `resource` is not defined_
+_Required_
 
 #### defaults
 
@@ -229,6 +231,27 @@ _Required_
 String.
 
 #### requirements
+
+#### _format
+
+#### _\<param from `path`\>_
+
+RegExp.
+
+#### methods
+
+String or Array. Allowed methods for requests.
+
+Syntax of external routes
+--
+
+#### resource
+
+_Required_
+
+#### prefix
+
+String.
 
 For more details see tests in `spec/`.
 
