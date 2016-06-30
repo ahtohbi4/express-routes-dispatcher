@@ -16,9 +16,9 @@ Routing based on JSON
 
 > MVC Routing based on JSON for [Express](http://expressjs.com/).
 
-In this implementation the routing is based on JSON format, which is a map from a URL path to a controller (Controller) to processes the request and finally to a template (View) to visualize a response.
+In this implementation, the routing is based on JSON format, which is a map from a URL path to a controller (Controller) to processes the request and finally to a template (View) to visualize a response.
 
-Format is similar to syntax of [Symfony](https://symfony.com/doc/3.0/book/routing.html) YAML based Routing.
+The format is similar to the syntax of [Symfony](https://symfony.com/doc/3.0/book/routing.html) YAML based Routing.
 
 Installation
 --
@@ -30,7 +30,7 @@ $ npm install express-routes-dispatcher --save
 Usage
 --
 
-The module which allows to organize simple and clear MVC-architecture in your Node.js application.
+The module which allows organizing simple and clear MVC-architecture in your Node.js application.
 
 For example, there are a page with list of articles `/articles/` and pages with one article (for example, `/articles/some-aticle-page/`). In this case, application architecture might look like:
 
@@ -51,7 +51,7 @@ app/
                 list.html.twig
 ```
 
-Entry point is the `app.js`. All HTTP-requests server sends to it, and it, in turn, forwards them to the controllers.
+The entry point is the `app.js`. All HTTP-requests server sends to it, and it, in turn, forwards them to the controllers.
 
 ```javascript
 // app/app.js
@@ -101,7 +101,7 @@ module.exports = function (request, response) {
 };
 ```
 
-Also it is possible to design separate modules, which in turn can be used in your other applications. For example, use them as Git's submodules and connect external routes of this module into their applications.
+Also, it is possible to design separate modules, which in turn can be used in your other applications. For example, use them as Git's submodules and connect external routes of this module into their applications.
 
 Example of file `app/config/routes.json` of a project that uses a News module with its own routes:
 
@@ -167,7 +167,7 @@ const app = express();
 
 _Required_
 
-Configuration of the router. Object with the next properties:
+The configuration of the router. Object with the next properties:
 
 #### file
 
@@ -206,7 +206,7 @@ Syntax of inline routes
 
 #### _\<route name\>_
 
-String. Should be unique, otherwise a last declared route with the same name will override earlier ones.
+String. Should be unique, otherwise, a last declared route with the same name will override earlier ones.
 
 #### path
 
