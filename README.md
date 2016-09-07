@@ -201,7 +201,7 @@ _Default: false_
 
 Set `true` to switch on the debug mode. In this mode by URI `/_dev/routing/` you can watch normalized route's map of your application as single JSON view, comprising all external routes.
 
-Syntax of inline routes
+The syntax of inline routes
 --
 
 #### _\<route name\>_
