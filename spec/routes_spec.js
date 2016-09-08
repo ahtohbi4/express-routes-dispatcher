@@ -6,6 +6,8 @@ const PORT = 1337;
 const fs = require('fs');
 const path = require('path');
 const request = require('request');
+
+const counter = require('./_helpers/counter');
 const getAbsoluteURL = require('./_helpers/get_absolute_url')(null, HOST, PORT);
 
 const express = require('express');
@@ -19,17 +21,6 @@ router(app, {
     file: './routing/main_routing.json',
     debug: true
 });
-
-/**
- * @returns {function}
- */
-const counter = (() => {
-    let count = 0;
-
-    return () => {
-        return count++;
-    };
-})();
 
 describe('Routes maps', () => {
     beforeEach(() => {
