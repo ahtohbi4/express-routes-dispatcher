@@ -4,4 +4,4 @@ require('babel-core/register')({
     ]
 });
 
-module.exports = require('./lib/router');
+module.exports = require('./src/router');
