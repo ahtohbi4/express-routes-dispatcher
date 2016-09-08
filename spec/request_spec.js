@@ -4,7 +4,7 @@ const HOST = 'localhost';
 const PORT = 1337;
 
 const request = require('request');
-const url = require('url');
+const getAbsoluteURL = require('./_helpers/get_absolute_url')(null, HOST, PORT);
 
 const express = require('express');
 const app = express();
@@ -19,20 +19,6 @@ router(app, {
     baseDir: __dirname,
     file: './routing/main_routing.json'
 });
-
-/**
- * @func
- * @param {string} path
- * @returns {string} Absolute URI to path
- */
-function getAbsoluteURL(path) {
-    return url.format({
-        protocol: 'http',
-        hostname: HOST,
-        port: PORT,
-        pathname: (path || '')
-    });
-}
 
 /**
  * @returns {function}
