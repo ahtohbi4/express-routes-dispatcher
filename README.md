@@ -18,7 +18,7 @@ Routing based on JSON
 
 In this implementation, the routing is based on JSON format, which is a map from a URL path to a controller (Controller) to processes the request and finally to a template (View) to visualize a response.
 
-The format is similar to the syntax of [Symfony](https://symfony.com/doc/3.0/book/routing.html) YAML based Routing.
+The format is similar to the syntax of [Symfony](https://symfony.com/doc/current/routing.html) YAML based Routing.
 
 Installation
 --
