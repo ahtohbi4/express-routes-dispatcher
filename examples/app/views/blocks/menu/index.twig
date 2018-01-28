@@ -1,0 +1,22 @@
+{% set menu = [
+    {
+        label: 'Main',
+        link: path('main'),
+    },
+    {
+        label: 'Users',
+        link: path('users'),
+    },
+] %}
+
+<nav>
+    <ul>
+        {% for item in menu %}
+            <li>
+                <a href="{{ item.link }}">
+                    {{- item.label -}}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

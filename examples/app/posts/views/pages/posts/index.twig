@@ -1,0 +1,19 @@
+{% extends '../../../../views/layout.twig' %}
+
+{% import '../../blocks/post/index.twig' as post %}
+
+{% block content %}
+    <h1>Posts</h1>
+
+    {% if data.posts %}
+        <ol>
+            {% for postParams in data.posts %}
+                <li>
+                    {{ post.render(postParams) }}
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <p>No posts found.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% macro render(params) %}
+    {% set author = params.author %}
+    {% set description = params.description %}
+    {% set datetime = params.datetime %}
+    {% set id = params.id %}
+
+    <section class="post" data-id="{{ id }}">
+        <div>
+            {{ description }}
+        </div>
+
+        <div>
+            <time datetime="{{ datetime }}">
+                {{- date(datetime)|date('D, j M Y G:i') -}}
+            </time>
+
+            <span> by </span>
+
+            <a href="{{ path('user', { id: author.id }) }}">
+                {{- author.name -}}
+            </a>
+        <div>
+    </section>
+{% endmacro %}

@@ -1,0 +1,18 @@
+{% spaceless %}
+<!doctype html>
+
+<html lang="en">
+    <head>
+    </head>
+
+    <body>
+        <aside>
+            {% include './blocks/menu/index.twig' %}
+        </aside>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </body>
+</html>
+{% endspaceless %}

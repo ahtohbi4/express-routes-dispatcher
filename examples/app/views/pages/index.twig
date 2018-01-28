@@ -1,0 +1,15 @@
+{% extends '../layout.twig' %}
+
+{% block content %}
+    <h1>Main page</h1>
+
+    <ul>
+        <li>
+            <a href="{{ path('users) }}">Users list</a>
+        </li>
+        
+        <li>
+            <a href="{{ path('users_json') }}">Users list (JSON)</a>
+        </li>
+    </ul>
+{% endblock %}

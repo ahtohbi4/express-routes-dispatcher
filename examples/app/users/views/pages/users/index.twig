@@ -1,0 +1,21 @@
+{% extends '../../../../views/layout.twig' %}
+
+{% import '../../blocks/user/index.twig' as user %}
+
+{% block content %}
+    <h1>Users</h1>
+
+    {% if data.users %}
+        <ol>
+            {% for userParams in data.users %}
+                <li>
+                    {{ user.render(userParams, {
+                        withLink: true,
+                    }) }}
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <p>No users found.</p>
+    {% endif %}
+{% endblock %}

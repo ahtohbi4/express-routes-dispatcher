@@ -1,0 +1,18 @@
+[
+  {
+    "age": 34,
+    "id": "0",
+    "location": "Moscow",
+    "name": "Piter Jackson"
+  },
+  {
+    "age": 19,
+    "id": "1",
+      "name": "Sara Bright"
+  },
+  {
+    "id": "2",
+    "location": "Astana",
+    "name": "Yerbol"
+  }
+]

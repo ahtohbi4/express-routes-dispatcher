@@ -1,0 +1,40 @@
+{##
+ # @param {object} params
+ # @param {string} params.id
+ # @param {string} params.name
+ # @param {number} [params.age]
+ # @param {string} [params.location]
+ # @param {object} [options={}]
+ # @param {boolean} [options.withLink=false]
+ #}
+{% macro render(params, options) -%}
+    {% set id = params.id %}
+    {% set name = params.name %}
+
+    {% set age = params.age|default(null) %}
+    {% set location = params.location|default('') %}
+
+    {% set options = options|default({}) %}
+    {% set withLink = options.withLink|default(false) %}
+
+    {% set title %}
+        {{- name -}}
+        {% if age %}, {{ age }} years old{% endif -%}
+    {% endset %}
+
+    <section class="user" data-id="{{ id }}">
+        <h3>
+            {% if withLink %}
+                <a href="{{ path('user', { id: id }) }}">
+                    {{- title -}}
+                </a>
+            {% else %}
+                {{- title -}}
+            {% endif %}
+        </h3>
+
+        {% if location %}
+            <p>Location: {{ location }}</p>
+        {% endif %}
+    </section>
+{%- endmacro %}

@@ -1,68 +1,189 @@
-'use strict';
+import express from 'express';
+import fs from 'fs';
+import mime from 'mime-types';
+import twig from 'twig';
+import url from 'url';
+import path from 'path';
 
-const fs = require('fs');
-const path = require('path');
-const url = require('url');
-const mime = require('mime-types');
-const _ = require('lodash');
+import Route from './Route';
+import Routes from './Routes';
 
-/**
- * @class Router
- */
-class Router {
+import { noop } from './utils';
+
+const DEFAULT_OPTIONS = {
+    app: express(),
+
+    baseDir: __dirname,
+    debug: false,
+    views: 'views',
+
+    host: 'localhost',
+    port: '3000',
+    protocol: 'http',
+};
+
+const URI_ROUTES = '/__routes/';
+
+export default class Router {
     /**
      * @constructs
-     * @param {Express} app
-     * @throws Error if parameter app is not defined
-     * @throws Error if parameter app is not express() function
-     * @param {object} options
-     * @param {string} options.file
-     * @throws Error if parameter file is not defined
+     *
+     * @param {Object|string} routes
+     *
+     * @param {Object} [options]
+     *
+     * @param {string} [options.app]
+     *
      * @param {string} [options.baseDir=__dirname]
      * @param {string} [options.debug=false]
+     *
+     * @param {string} [options.host=localhost]
+     * @param {string} [options.port=3000]
+     * @param {string} [options.protocol=http]
      */
-    constructor() {
-        return (app, options) => {
-            if (app === undefined) {
-                throw new Error(`Could not apply router to undefined application.`);
-            } else if (typeof app !== 'function') {
-                throw new Error(`Application should to be an express() function.`);
-            } else {
-                // @member {function} app
-                this.app = app;
-            }
+    constructor(routes, options = {}) {
+        this.options = {
+            ...DEFAULT_OPTIONS,
+            ...options,
 
-            if (options.file === undefined) {
-                throw new Error(`Route's file have to be specified.`);
-            } else {
-                // @member {string} file
-                this.file = options.file;
-            }
-
-            // @member {string} [protocol]
-            this.protocol = options.protocol || 'http';
-
-            // @member {string} [host]
-            this.host = options.host || '';
-
-            // @member {string} [port]
-            this.port = options.port || '';
-
-            // @member {string} [baseDir=__dirname]
-            this.baseDir = options.baseDir || __dirname;
-
-            // @member {boolean} [debug=false]
-            this.debug = options.debug || false;
-
-            this._start();
+            baseDir: path.resolve(__dirname, '../', options.baseDir),
         };
+
+        this.init(routes);
     }
 
+    /**
+     * Initialization of Router.
+     *
+     * @private
+     */
+    init(routes) {
+        const { app, baseDir, debug, views } = this.options;
+
+        app.set('views', path.resolve(baseDir, views));
+        app.set('view engine', 'twig');
+
+        this.routes = new Routes(routes, {
+            baseDir,
+            debug,
+        });
+        this.routes.walk((route) => {
+            const { controller, format, methods, template, uri } = route;
+
+            methods.forEach((method) => {
+                app[method](uri, (request, response) => {
+                    switch (format) {
+                        case Route.FORMAT_HTML:
+                            response.render(template, controller(request, response));
+                            break;
+
+                        case Route.FORMAT_JSON:
+                        default:
+                            response.send(controller(request, response));
+                            break;
+                    }
+                });
+            });
+        });
+
+        // Page not found.
+        app.use((request, response) => {
+            response.status(404);
+            response.send({
+                error: 'Not found',
+            });    
+        });
+
+        twig.extendFunction(
+            'path',
+            (name, params) => this.routes
+                .getByName(name)
+                .generateURI(params),
+        );
+    }
+
+    /**
+     * Normalizes routes map to a plain object.
+     *
+     * @param {string|Object} routes - Route declaration.
+     * @param {string} [base] - Base of URI path.
+     *
+     * @private
+     */
+    normalizeRoutesMap(routes, base = '') {
+        const { baseDir } = this.options;
+
+        switch (typeof routes) {
+            case 'object':
+                return Object.keys(routes)
+                    .reduce((result, name) => {
+                        const route = routes[name];
+                        const { children, prefix } = route;
+
+                        if (children) {
+                            return {
+                                ...result,
+                                ...this.normalizeRoutesMap(children, Router.resolvePath(base, prefix)),
+                            };
+                        }
+
+                        return {
+                            ...result,
+                            [name]: new Route({
+                                ...route,
+                                name,
+                                path: Router.resolvePath(base, route.path),
+                            }),
+                        };
+                    }, {});
+
+            case 'string':
+                return this.normalizeRoutesMap(JSON.parse(fs.readFileSync(join(baseDir, routes), 'utf8')));
+
+            default:
+                throw new TypeError('Unexpected type of routes.');
+        }
+    }
+
+    /**
+     * Starts an application.
+     *
+     * @param {function} [cb] - Callback function after the application was started.
+     *
+     * @public
+     */
+    start(cb = noop) {
+        const { host, port, protocol } = this.options;
+
+        this.options.app
+            .listen(port, () => {
+                console.log(`Start Router on ${protocol}://${host}:${port}`);
+
+                cb.call(this);
+            });
+    }
+}
+
+Router.resolvePath = (...items) => items
+    .filter((item) => item)
+    .join('/')
+    .replace(/\/{2,}/g, '/');
+
+
+
+
+
+
+
+
+class Foo {
     /**
      * @method
      * @private
      */
-    _start() {
+    init() {
+        const { debug } = this.options;
+
         this.routeMap = {};
         this._normalizeRoutesMap(this._getRoutesFromFile(this.file));
 
@@ -70,9 +191,9 @@ class Router {
             this._applyRoute(this.routeMap[name]);
         }
 
-        if (this.debug) {
+        if (debug) {
             // URI to output routeMap for developing
-            this.app.get('/_dev/routes/', (req, res) => {
+            this.app.get(URI_ROUTES, (req, res) => {
                 res.json(this.routeMap);
             });
         }
@@ -412,6 +533,4 @@ class Router {
 
         return result;
     }
-};
-
-module.exports = new Router();
+}

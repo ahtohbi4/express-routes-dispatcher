@@ -1,0 +1,17 @@
+{% extends '../../../../views/layout.twig' %}
+
+{% import '../../blocks/user/index.twig' as user %}
+
+{% block content %}
+    <h1>User</h1>
+
+    <p>
+        <a href="{{ path('users') }}">← Back to list</a>
+    </p>
+
+    {% if data.user %}
+        {{ user.render(data.user) }}
+    {% else %}
+        <p><em>User not found.</em></p>
+    {% endif %}
+{% endblock %}
