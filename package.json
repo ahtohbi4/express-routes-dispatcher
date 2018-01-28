@@ -3,7 +3,6 @@
   "version": "1.0.3",
   "description": "Routing for expressjs",
   "scripts": {
-    "test": "node_modules/.bin/jasmine-node --color spec/",
     "start": "./node_modules/.bin/babel-node examples"
   },
   "repository": {
@@ -24,7 +23,6 @@
   "homepage": "https://github.com/ahtohbi4/express-routes-dispatcher#readme",
   "dependencies": {
     "express": "^4.13.3",
-    "lodash": "^4.0.0",
     "mime-types": "^2.1.11"
   },
   "devDependencies": {
@@ -33,7 +31,6 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-3": "^6.24.1",
     "babel-register": "^6.26.0",
-    "jasmine-node": "^1.14.5",
     "request": "^2.67.0",
     "twig": "^1.10.5"
   },
