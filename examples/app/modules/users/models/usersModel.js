@@ -1,6 +1,11 @@
 const users = require('../../../../data/users.json');
 
 const Users = function (data) {
+	if (Users.instance) {
+		return Users.instance
+	}
+    Users.instance = this;
+
     this.data = data;
 }
 

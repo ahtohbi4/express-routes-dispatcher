@@ -13,7 +13,10 @@ import { noop } from './utils';
 const DEFAULT_OPTIONS = {
     app: express(),
 
-    baseDir: __dirname,
+    baseDir: path.resolve(__dirname, '../'),
+    publicDir: 'public',
+    publicPath: '/',
+
     debug: false,
     views: 'views',
 
@@ -41,12 +44,13 @@ export default class Router {
      * @param {string} [options.port=3000]
      * @param {string} [options.protocol=http]
      */
-    constructor(routes, options = {}) {
+    constructor(routes, { baseDir, publicDir, ...options } = {}) {
         this.options = {
             ...DEFAULT_OPTIONS,
             ...options,
 
-            baseDir: path.resolve(__dirname, '../', options.baseDir),
+            baseDir: path.resolve(__dirname, '../', baseDir),
+            publicDir: path.resolve(__dirname, '../', baseDir, publicDir),
         };
 
         this.init(routes);
@@ -58,7 +62,7 @@ export default class Router {
      * @private
      */
     init(routes) {
-        const { app, baseDir, debug, views } = this.options;
+        const { app, baseDir, debug, publicDir, publicPath, views } = this.options;
 
         app.set('views', path.resolve(baseDir, views));
         app.set('view engine', 'twig');
@@ -85,6 +89,9 @@ export default class Router {
                 });
             });
         });
+
+        // Static path.
+        app.use(publicPath, express.static(publicDir));
 
         // Page not found.
         app.use((request, response) => {

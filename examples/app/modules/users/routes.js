@@ -1,18 +1,18 @@
 module.exports = {
     users: {
         path: '/',
-        controller: 'controllers/getUsers',
+        controller: 'controllers/usersListController',
         defaults: {
             _template: 'views/pages/users/index.twig',
         },
     },
     users_json: {
         path: '/~json',
-        controller: 'controllers/getUsers',
+        controller: 'controllers/usersListController',
     },
     user: {
         path: '/{id}/',
-        controller: 'controllers/getUserById',
+        controller: 'controllers/userController',
         defaults: {
             _template: 'views/pages/user/index.twig',
         },
@@ -22,7 +22,7 @@ module.exports = {
     },
     user_json: {
         path: '/{id}/~json',
-        controller: 'controllers/getUserById',
+        controller: 'controllers/userController',
         requirements: {
             id: '\\d+',
         },

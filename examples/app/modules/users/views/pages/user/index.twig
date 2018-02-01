@@ -11,6 +11,24 @@
 
     {% if data.user %}
         {{ user.render(data.user) }}
+
+        {% if data.user.posts %}
+            <h4>Last posts</h4>
+
+            <ol>
+                {% for post in data.user.posts %}
+                    <li>
+                        <time>
+                            {{- date(post.datetime)|date('D, j M Y G:i') -}}
+                        <time>
+
+                        <p>
+                            {{- post.description -}}
+                        </p>
+                    </li>
+                {% endfor %}
+            </ol>
+        {% endif %}
     {% else %}
         <p><em>User not found.</em></p>
     {% endif %}

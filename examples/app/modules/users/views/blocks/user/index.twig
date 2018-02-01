@@ -24,13 +24,13 @@
 
     <section class="user" data-id="{{ id }}">
         <h3>
-            {% if withLink %}
+            {%- if withLink %}
                 <a href="{{ path('user', { id: id }) }}">
                     {{- title -}}
                 </a>
             {% else %}
                 {{- title -}}
-            {% endif %}
+            {% endif -%}
         </h3>
 
         {% if location %}
