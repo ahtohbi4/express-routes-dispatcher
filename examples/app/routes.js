@@ -3,15 +3,15 @@ module.exports = {
         path: '/',
         defaults: {
             _format: 'html',
-            _template: 'pages/index.twig',
+            _template: 'views/pages/index.twig',
         },
     },
     users: {
         prefix: '/users',
-        resource: './users/routes.js',
+        resource: 'modules/users/routes.js',
     },
     posts: {
         prefix: '/posts',
-        resource: './posts/routes.js',
+        resource: 'modules/posts/routes.js',
     },
 };

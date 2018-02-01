@@ -20,4 +20,11 @@ module.exports = {
             id: '\\d+',
         },
     },
+    user_json: {
+        path: '/{id}/~json',
+        controller: 'controllers/getUserById',
+        requirements: {
+            id: '\\d+',
+        },
+    },
 };

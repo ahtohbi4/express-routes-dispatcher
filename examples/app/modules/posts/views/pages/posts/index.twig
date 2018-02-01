@@ -1,9 +1,13 @@
-{% extends '../../../../views/layout.twig' %}
+{% extends '../../../../../views/layout.twig' %}
 
 {% import '../../blocks/post/index.twig' as post %}
 
 {% block content %}
     <h1>Posts</h1>
+
+    <p>
+        <a href="{{ path('posts_json') }}">See JSON</a>
+    </p>
 
     {% if data.posts %}
         <ol>

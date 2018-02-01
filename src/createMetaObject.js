@@ -8,14 +8,21 @@ export default function createMetaObject(schema) {
                     this[name] = value;
                 });
 
+            let missedParams = [];
+
             Object.keys(schema)
                 .forEach((name) => {
-                    const value = params[name];
-
-                    if (value === undefined) {
-                        throw new Error(`Parameter ${name} was missed.`);
+                    if (params[name] === undefined) {
+                        missedParams = [
+                            ...missedParams,
+                            name
+                        ];
                     }
                 });
+
+            if (missedParams.length > 0) {
+                throw new Error(`Required parameters (${missedParams.join(', ')}) were missed.`);
+            }
         }
     }
 }

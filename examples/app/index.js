@@ -1,5 +1,5 @@
-import Router from '../index';
-import routes from './app/routes';
+import Router from '../../index';
+import routes from './routes';
 
 const router = new Router(routes, {
     baseDir: 'examples/app',

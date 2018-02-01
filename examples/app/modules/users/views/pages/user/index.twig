@@ -1,4 +1,4 @@
-{% extends '../../../../views/layout.twig' %}
+{% extends '../../../../../views/layout.twig' %}
 
 {% import '../../blocks/user/index.twig' as user %}
 
@@ -6,7 +6,7 @@
     <h1>User</h1>
 
     <p>
-        <a href="{{ path('users') }}">← Back to list</a>
+        <a href="{{ path('user_json', { id: data.user.id }) }}">See JSON</a>
     </p>
 
     {% if data.user %}
