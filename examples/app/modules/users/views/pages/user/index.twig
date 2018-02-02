@@ -2,6 +2,8 @@
 
 {% import '../../blocks/user/index.twig' as user %}
 
+{% block title %}{{ data.user.name|escape('html') }} | User{% endblock %}
+
 {% block content %}
     <h1>User</h1>
 

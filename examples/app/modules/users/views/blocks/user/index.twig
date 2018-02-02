@@ -12,6 +12,7 @@
     {% set name = params.name %}
 
     {% set age = params.age|default(null) %}
+    {% set avatar = params.avatar|default('') %}
     {% set location = params.location|default('') %}
 
     {% set options = options|default({}) %}
@@ -32,6 +33,12 @@
                 {{- title -}}
             {% endif -%}
         </h3>
+
+        {% if avatar %}
+            <div class="user__avatar-container">
+                <img class="user__avatar" src="{{ avatar }}" alt="{{ name|escape('html_attr') }}" />
+            </div>
+        {% endif %}
 
         {% if location %}
             <p>Location: {{ location }}</p>
