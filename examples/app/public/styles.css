@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #f0f0f0;
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -14,4 +15,73 @@ body {
     font-size: 16px;
     font-weight: 300;
     line-height: 27px;
+}
+
+p {
+    margin: 0 0 18px;
+}
+
+/* block avatar */
+.avatar {
+    position: relative;
+    background-color: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.avatar_size_s {
+    width: 54px;
+}
+
+.avatar_size_l {
+    width: 180px;
+}
+
+.avatar::after {
+    display: block;
+    padding-top: 100%;
+    content: '';
+}
+
+.avatar__userpic {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* block user */
+.user {
+    display: flex;
+    margin: 9px 20px;
+    padding: 18px 20px 0;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 0 1px rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+}
+
+.user::after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.user__avatar {
+    margin-bottom: 18px;
+}
+
+.user__info {
+    margin-left: 20px;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.user__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
 }

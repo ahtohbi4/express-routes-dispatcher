@@ -1,17 +1,22 @@
 {% extends '../../../../../views/layout.twig' %}
 
+{% import '../../blocks/avatar/index.twig' as avatar %}
 {% import '../../blocks/user/index.twig' as user %}
 
 {% block title %}{{ data.user.name|escape('html') }} | User{% endblock %}
 
 {% block content %}
-    <h1>User</h1>
+    <h1>{{ data.user.name }}</h1>
 
     <p>
         <a href="{{ path('user_json', { id: data.user.id }) }}">See JSON</a>
     </p>
 
     {% if data.user %}
+        {{ avatar.render({
+            name: data.user.name,
+            path: data.user.avatar,
+        }) }}
         {{ user.render(data.user) }}
 
         {% if data.user.posts %}

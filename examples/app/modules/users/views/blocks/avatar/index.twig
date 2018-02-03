@@ -1,0 +1,19 @@
+{##
+ # @param {object} params
+ # @param {string} params.name
+ # @param {string} params.path
+ # @param {object} [options={}]
+ # @param {boolean} [options.size=l]
+ #}
+{% macro render(params, options) -%}
+    {% set name = params.name|escape('html_attr') %}
+    {% set path = params.path %}
+
+    {% set options = options|default({}) %}
+    {% set SIZES = ['s', 'l'] %}
+    {% set size = (options.size in SIZES) ? options.size : 'l' %}
+
+    <div class="avatar avatar_size_{{ size }}">
+        <img class="avatar__userpic" src="{{ path }}" alt="{{ name }}" />
+    </div>
+{%- endmacro %}

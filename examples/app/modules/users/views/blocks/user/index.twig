@@ -3,16 +3,19 @@
  # @param {string} params.id
  # @param {string} params.name
  # @param {number} [params.age]
+ # @param {string} [params.avatar]
  # @param {string} [params.location]
  # @param {object} [options={}]
  # @param {boolean} [options.withLink=false]
  #}
 {% macro render(params, options) -%}
+    {% import '../avatar/index.twig' as avatar %}
+
     {% set id = params.id %}
     {% set name = params.name %}
 
     {% set age = params.age|default(null) %}
-    {% set avatar = params.avatar|default('') %}
+    {% set avatarPath = params.avatar|default('') %}
     {% set location = params.location|default('') %}
 
     {% set options = options|default({}) %}
@@ -24,24 +27,29 @@
     {% endset %}
 
     <section class="user" data-id="{{ id }}">
-        <h3>
-            {%- if withLink %}
-                <a href="{{ path('user', { id: id }) }}">
+        <div class="user__avatar">
+            {{ avatar.render({
+                name: name,
+                path: avatarPath,
+            }, {
+                size: 's',
+            }) }}
+        </div>
+
+        <div class="user__info">
+            <h3 class="user__title">
+                {%- if withLink %}
+                    <a href="{{ path('user', { id: id }) }}">
+                        {{- title -}}
+                    </a>
+                {% else %}
                     {{- title -}}
-                </a>
-            {% else %}
-                {{- title -}}
-            {% endif -%}
-        </h3>
+                {% endif -%}
+            </h3>
 
-        {% if avatar %}
-            <div class="user__avatar-container">
-                <img class="user__avatar" src="{{ avatar }}" alt="{{ name|escape('html_attr') }}" />
-            </div>
-        {% endif %}
-
-        {% if location %}
-            <p>Location: {{ location }}</p>
-        {% endif %}
+            {% if location %}
+                <p>Location: {{ location }}</p>
+            {% endif %}
+        </div>
     </section>
 {%- endmacro %}

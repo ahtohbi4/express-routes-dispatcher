@@ -11,16 +11,10 @@
         <a href="{{ path('users_json') }}">See JSON</a>
     </p>
 
-    {% if data.users %}
-        <ol>
-            {% for userParams in data.users %}
-                <li>
-                    {{ user.render(userParams, {
-                        withLink: true,
-                    }) }}
-                </li>
-            {% endfor %}
-        </ol>
+    {% for userParams in data.users %}
+        {{ user.render(userParams, {
+            withLink: true,
+        }) }}
     {% else %}
         <p>No users found.</p>
     {% endif %}
