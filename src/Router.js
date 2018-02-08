@@ -72,18 +72,41 @@ export default class Router {
             debug,
         });
         this.routes.walk((route) => {
-            const { controller, format, methods, template, uri } = route;
+            const { controller, format, methods, name, template, uri } = route;
 
             methods.forEach((method) => {
                 app[method](uri, (request, response) => {
                     switch (format) {
-                        case Route.FORMAT_HTML:
-                            response.render(template, controller(request, response));
+                        case Route.FORMAT_HTML: {
+                            const {
+                                hostname: host,
+                                originalUrl: url,
+                                query,
+                                params,
+                                path,
+                                protocol,
+                                subdomains,
+                            } = request;
+
+                            response.render(template, ({
+                                ...controller(request, response),
+                                __route: {
+                                    host,
+                                    name,
+                                    query,
+                                    params,
+                                    path,
+                                    protocol,
+                                    subdomains,
+                                    url,
+                                },
+                            }));
                             break;
+                        }
 
                         case Route.FORMAT_JSON:
                         default:
-                            response.send(controller(request, response));
+                            response.json(controller(request, response));
                             break;
                     }
                 });

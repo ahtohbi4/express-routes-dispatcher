@@ -1,23 +1,24 @@
-{% set menu = [
-    {
+{% set menu = {
+    main: {
         label: 'Main',
-        link: path('main'),
     },
-    {
+    users: {
         label: 'Users',
-        link: path('users'),
     },
-    {
+    posts: {
         label: 'Posts',
-        link: path('posts'),
     },
-] %}
+} %}
 
 <nav>
     <ul>
-        {% for item in menu %}
+        {% for name, item in menu %}
             <li>
-                <a href="{{ item.link }}">
+                {% set href %}
+                    {%- if (name != __route.name) %} href="{{ path(name) }}"{% endif -%}
+                {% endset %}
+
+                <a{{ href }}>
                     {{- item.label -}}
                 </a>
             </li>
