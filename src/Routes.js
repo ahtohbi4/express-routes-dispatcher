@@ -3,8 +3,7 @@ import path from 'path';
 import url from 'url';
 
 import Route from './Route';
-
-import { joinURI } from './utils';
+import joinURI from './utils/joinURI';
 
 export default class Routes {
     constructor(routes, options = {}) {

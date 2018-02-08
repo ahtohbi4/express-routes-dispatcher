@@ -1,9 +1,6 @@
 import { assert } from 'chai';
 
-import {
-    joinURI,
-    noop,
-} from '../src/utils';
+import joinURI from '../../src/utils/joinURI';
 
 describe('Function "joinURI"', function () {
     it('removes excess slashes', function () {
@@ -14,11 +11,5 @@ describe('Function "joinURI"', function () {
     it('joins several substrings', function () {
         assert.equal(joinURI('foo', 'baz', 'bar'), 'foo/baz/bar');
         assert.equal(joinURI('foo/', '/baz/', '/bar'), 'foo/baz/bar');
-    });
-});
-
-describe('Function "noop"', function () {
-    it('always returns null', function () {
-        assert.equal(noop(), null);
     });
 });

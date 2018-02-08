@@ -1,8 +1,7 @@
 import path from 'path';
 
-import createMetaObject from './createMetaObject';
-
-import { noop } from './utils';
+import createMetaObject from './utils/createMetaObject';
+import noop from './utils/noop';
 
 const schema = {
     name: undefined,

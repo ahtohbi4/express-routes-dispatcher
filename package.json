@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/babel-node examples/app",
-    "test": "node_modules/.bin/mocha --require babel-register"
+    "test": "node_modules/.bin/mocha --recursive --require babel-register"
   },
   "repository": {
     "type": "git",

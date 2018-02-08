@@ -7,8 +7,7 @@ import path from 'path';
 
 import Route from './Route';
 import Routes from './Routes';
-
-import { noop } from './utils';
+import noop from './utils/noop';
 
 const DEFAULT_OPTIONS = {
     app: express(),
@@ -44,7 +43,7 @@ export default class Router {
      * @param {string} [options.port=3000]
      * @param {string} [options.protocol=http]
      */
-    constructor(routes, { baseDir, publicDir, ...options } = {}) {
+    constructor(routes, { baseDir = DEFAULT_OPTIONS.baseDir, publicDir = DEFAULT_OPTIONS.publicDir, ...options } = {}) {
         this.options = {
             ...DEFAULT_OPTIONS,
             ...options,
@@ -140,13 +139,26 @@ export default class Router {
      * @public
      */
     start(cb = noop) {
-        const { host, port, protocol } = this.options;
+        const { app, host, port, protocol } = this.options;
 
-        this.options.app
+        this.server = app
             .listen(port, () => {
                 console.log(`Start Router on ${protocol}://${host}:${port}`);
 
                 cb.call(this);
             });
+    }
+
+    close(cb = noop) {
+        const { app, host, port, protocol } = this.options;
+
+        if (this.server && typeof this.server.close === 'function') {
+            this.server
+                .close(() => {
+                    console.log(`Close Router on ${protocol}://${host}:${port}`);
+
+                    cb.call(this);
+                });
+        }
     }
 }
