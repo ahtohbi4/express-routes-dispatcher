@@ -154,7 +154,7 @@ Returns instance of Router.
 | `options.baseDir` | *string* | [\_\_dirname](https://nodejs.org/api/globals.html#globals_dirname) | Base directory to resolve relative paths, such as `publicDir`, `viewsDir` and paths of routes from `routes`. |
 | `options.publicDir` | *string* | 'public' | |
 | `options.publicPath` | *string* | '/' | |
-| `options.debug` | *boolean* | false | If `true` the additional route [http://localhost:3000/__routes__/](http://localhost:3000/__routes__/) with map of all routes in JSON-format is available. |
+| `options.debug` | *boolean* | false | If `true` the additional route [http://localhost:3000/\_\_routes\_\_/](http://localhost:3000/__routes__/) with map of all routes in JSON-format is available. |
 | `options.viewsDir` | *string* | 'views' | |
 | `options.host` | *string* | 'localhost' | |
 | `options.port` | *number* | 3000 | |
