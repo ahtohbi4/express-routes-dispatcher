@@ -151,6 +151,8 @@ const router = new Router(routes, options);
 
 Starts and returns instance of Node.js server. Use this instance to stop server.
 
+Function `cb` will be called after successful starting.
+
 ```javascript
 const server = router.start(({ host, port, protocol }) => {
     console.log(`Server on ${protocol}://${host}:${port} was started.`);
@@ -158,6 +160,8 @@ const server = router.start(({ host, port, protocol }) => {
 ```
 
 #### Method `close(cb)`
+
+Stops server.
 
 ```javascript
 const server = router.start();
