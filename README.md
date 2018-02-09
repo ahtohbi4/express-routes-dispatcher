@@ -276,33 +276,16 @@ For all templates are available some global variables and functions.
 
 An object which contains parameters of the current route.
 
-`__route.host` *(string)*
-
-Hostname.
-
-`__route.name` *(string)*
-
-Name of the route. You can use it for example to detect a current item of the menu.
-
-`__route.params` *(Object)*
-
-Object with parameters geted from the URL.
-
-`__route.path` *(string)*
-
-`__route.protocol` *('http'|'https')*
-
-Protocol.
-
-`__route.query` *(Object)*
-
-Object with GET-parameters from the URL.
-
-`__route.subdomains` *(Array<string>)*
- 
- Array of subdomains.
-
-`__route.url` *(string)*
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| `host` | *string* | Hostname. |
+| `name` | *string* | Name of the route. You can use it for example to detect a current item of the menu. |
+| `params` | *Object* | Object with parameters geted from the URL. |
+| `path` | *string* | |
+| `protocol` | *('http'\|'https')* | Protocol. |
+| `query` | *Object* | Object with GET-parameters from the URL. |
+| `subdomains` | *Array<string>* | Array of subdomains. |
+| `url` | *string* | |
 
 #### `path(name, options)` *(function)*
 
