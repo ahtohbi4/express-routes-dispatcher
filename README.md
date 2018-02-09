@@ -154,7 +154,7 @@ Returns instance of Router.
 | `options.baseDir` | *string* | [\_\_dirname](https://nodejs.org/api/globals.html#globals_dirname) | Base directory to resolve relative paths, such as `publicDir`, `viewsDir` and paths of routes from `routes`. |
 | `options.publicDir` | *string* | 'public' | |
 | `options.publicPath` | *string* | '/' | |
-| `options.debug` | *boolean* | false | If `true` the additional route [/\_\_routes\_\_/](http://localhost:3000/__routes__/) with map of all routes in JSON-format is available. |
+| `options.debug` | *boolean* | false | If `true` the additional route [http://localhost:3000/__routes__/](http://localhost:3000/__routes__/) with map of all routes in JSON-format is available. |
 | `options.viewsDir` | *string* | 'views' | |
 | `options.host` | *string* | 'localhost' | |
 | `options.port` | *number* | 3000 | |
@@ -186,72 +186,7 @@ const server = router.start();
 setTimeout(() => server.close(), 60000); // The server will be stopped after the 60 seconds.
 ```
 
-Options
---
-
-To start the router, use function:
-
-```javascript
-const router = require('express-routes-dispatcher');
-router(app, {
-    file: './config/routes.json'
-});
-```
-
-with to required parameters:
-
-#### app
-
-_Required_
-
-Object of an Express application:
-
-```javascript
-// app/app.js
-
-const express = require('express');
-const app = express();
-```
-
-#### config
-
-_Required_
-
-The configuration of the router. Object with the next properties:
-
-#### file
-
-_Required_
-
-String. Path to a main file of routes.
-
-#### protocol
-
-_Default: 'http'_
-
-_Coming soon…_
-
-#### host
-
-_Coming soon…_
-
-#### port
-
-_Coming soon…_
-
-#### baseDir
-
-_Default: current script's directory_
-
-Base directory with resources, such as controllers or templates.
-
-#### debug
-
-_Default: false_
-
-Set `true` to switch on the debug mode. In this mode by URI `/_dev/routing/` you can watch normalized route's map of your application as single JSON view, comprising all external routes.
-
-The syntax of inline routes
+Syntax of inline routes
 --
 
 #### _\<route name\>_
