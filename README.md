@@ -27,7 +27,7 @@ Installation
 $ npm install express-routes-dispatcher --save
 ```
 
-Or
+or
 
 ```bash
 $ yarn add express-routes-dispatcher
@@ -41,26 +41,24 @@ The module which allows organizing simple and clear MVC-architecture in your Nod
 For example, there are a page with list of articles `/articles/` and pages with one article (for example, `/articles/some-aticle-page/`). In this case, application architecture might look like:
 
 ```
-app/
-    app.js
-    config/
-        routes.json
-    modules/
-        Article/
-            controllers/
-                item.js
-                list.js
-            models/
-                …
-            views/
-                item.html.twig
-                list.html.twig
+app/                          // Application root.
+ ├─ modules/                  // Modules.
+ │   ├─ articles/
+ │   │   ├─ controllers/      // Module`s controllers.
+ │   │   ├─ models/           // Module`s models.
+ │   │   ├─ views/            // Module`s templates such as pages, partials or blocks (BEM).
+ │   │   └─ routing.json      // Module`s routing.
+ │   └─ •••
+ ├─ views/                    // Common templates such as static pages, partials or blocks (BEM).
+ ├─ config.js                 // Config file.
+ ├─ index.js                  // The entry point of the application.
+ └─ routing.js                // Base routing file. Includes common static pages and routing files of modules.
 ```
 
-The entry point is the `app.js`. All HTTP-requests server sends to it, and it, in turn, forwards them to the controllers.
+The entry point `index.js` processes all HTTP-requests.
 
 ```javascript
-// app/app.js
+// app/index.js
 
 const express = require('express');
 const app = express();
@@ -71,7 +69,7 @@ router(app, {
 });
 ```
 
-File `routes.json` describes the URIs, controllers for processing requests by this URIs and templates to returning response data by the controller:
+File `routes.js` describes the URIs, controllers for processing requests by this URIs and templates to returning response data by the controller:
 
 ```json
 {
