@@ -151,10 +151,10 @@ Returns instance of Router.
 | --------- | :--: | :-----: | ----------- |
 | `routes` | *Object* | — | **Required.** Object with routes description. |
 | `options` | *Object* | — | Additional options. |
-| `options.baseDir` | *string* | [__dirname](https://nodejs.org/api/globals.html#globals_dirname) | Base directory to resolve relative paths, such as `publicDir`, `viewsDir` and paths of routes from `routes`. |
+| `options.baseDir` | *string* | [\_\_dirname](https://nodejs.org/api/globals.html#globals_dirname) | Base directory to resolve relative paths, such as `publicDir`, `viewsDir` and paths of routes from `routes`. |
 | `options.publicDir` | *string* | 'public' | |
 | `options.publicPath` | *string* | '/' | |
-| `options.debug` | *boolean* | false | |
+| `options.debug` | *boolean* | false | If `true` the additional route [/\_\_routes\_\_/](http://localhost:3000/__routes__/) with map of all routes in JSON-format is available. |
 | `options.viewsDir` | *string* | 'views' | |
 | `options.host` | *string* | 'localhost' | |
 | `options.port` | *number* | 3000 | |
