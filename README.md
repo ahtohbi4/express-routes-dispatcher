@@ -143,6 +143,23 @@ Example of the external `modules/News/config/routing.json`:
 Class `Router`
 --
 
+#### Constructor `new Router(routes, options)`
+
+Returns instance of Router.
+
+| Parameter | Type | Default | Description |
+| --------- | :--: | :-----: | ----------- |
+| `routes` | *Object* | — | **Required.** Object with routes description. |
+| `options` | *Object* | — | Additional options. |
+| `options.baseDir` | *string* | [__dirname](https://nodejs.org/api/globals.html#globals_dirname) | Base directory to resolve relative paths, such as `publicDir`, `viewsDir` and paths of routes from `routes`. |
+| `options.publicDir` | *string* | 'public' | |
+| `options.publicPath` | *string* | '/' | |
+| `options.debug` | *boolean* | false | |
+| `options.viewsDir` | *string* | 'views' | |
+| `options.host` | *string* | 'localhost' | |
+| `options.port` | *number* | 3000 | |
+| `options.protocol` | *string* | 'http' | |
+
 ```javascript
 const router = new Router(routes, options);
 ```
