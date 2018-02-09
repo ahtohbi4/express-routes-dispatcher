@@ -1,4 +1,4 @@
-Routing based on JSON
+JSON based routing for Node.js
 ==
 
 [![npm version][version-img]][version] [![Dependency Status][dependency-img]][dependency] [![Travis Build Status][travis-img]][travis] [![Appveyor Build Status][appveyor-img]][appveyor] [![Codacy Badge][codacy-img]][codacy]
@@ -14,7 +14,7 @@ Routing based on JSON
 [codacy-img]: https://api.codacy.com/project/badge/grade/480c7aa1737046bfa6d475082847d513
 [codacy]: https://www.codacy.com/app/alexandr-post/express-routes-dispatcher
 
-> MVC Routing based on JSON for [Express](http://expressjs.com/).
+> JSON based MVC routing using [express](http://expressjs.com/) and [twig](https://twig.symfony.com/doc/2.x/) as template engine.
 
 In this implementation, the routing is based on JSON format, which is a map from a URL path to a controller (Controller) to processes the request and finally to a template (View) to visualize a response.
 
@@ -25,6 +25,12 @@ Installation
 
 ```bash
 $ npm install express-routes-dispatcher --save
+```
+
+Or
+
+```bash
+$ yarn add express-routes-dispatcher
 ```
 
 Usage
