@@ -277,7 +277,7 @@ For all templates are available some global variables and functions.
 An object which contains parameters of the current route.
 
 | Parameter | Type | Description |
-| --------- | ---- | ----------- |
+| --------- | :----: | ----------- |
 | `host` | *string* | Hostname. |
 | `name` | *string* | Name of the route. You can use it for example to detect a current item of the menu. |
 | `params` | *Object* | Object with parameters geted from the URL. |
@@ -299,13 +299,11 @@ Required. Name of routing to generate URL.
 
 Additional options.
 
-`options.hash` *(string)*
-
-Fragment, separated from the preceding part by a hash `#`.
-
-`options.params` *(Object)*
-
-`options.query` *(Object)*
+| Parameter | Type | Description |
+| --------- | :----: | ----------- |
+| `hash` | *string* | Fragment, separated from the preceding part by a hash `#`. |
+| `params` | *Object* | |
+| `query` | *Object* | |
 
 **Example:**
 
