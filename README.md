@@ -71,8 +71,8 @@ router(app, {
 
 File `routes.js` describes the URIs, controllers for processing requests by this URIs and templates to returning response data by the controller:
 
-```json
-{
+```javascript
+module.exports = {
     "articles_list": {
         "path": "/articles/",
         "defaults": {
@@ -138,6 +138,31 @@ Example of the external `modules/News/config/routing.json`:
         }
     }
 }
+```
+
+Class `Router`
+--
+
+```javascript
+const router = new Router(routes, options);
+```
+
+#### Method `start(cb)`
+
+Starts and returns instance of Node.js server. Use this instance to stop server.
+
+```javascript
+const server = router.start(({ host, port, protocol }) => {
+    console.log(`Server on ${protocol}://${host}:${port} was started.`);
+});
+```
+
+#### Method `close(cb)`
+
+```javascript
+const server = router.start();
+
+setTimeout(() => server.close(), 60000); // The server will be stopped after the 60 seconds.
 ```
 
 Options
