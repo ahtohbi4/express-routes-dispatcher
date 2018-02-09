@@ -265,6 +265,71 @@ String.
 
 For more details see tests in `spec/`.
 
+Using templates
+--
+
+Twig is a powerful template engine. More about it you can read [in official documentation](https://twig.symfony.com/doc/2.x/).
+
+For all templates are available some global variables and functions.
+
+#### `__route` *(Object)*
+
+An object which contains parameters of the current route.
+
+`__route.host` *(string)*
+
+Hostname.
+
+`__route.name` *(string)*
+
+Name of the route. You can use it for example to detect a current item of the menu.
+
+`__route.query` *(Object)*
+
+`__route.params` *(Object)*
+
+Object with parameters geted from the URI.
+
+`__route.path` *(string)*
+
+`__route.protocol` *('http'|'https')*
+
+Protocol.
+
+`__route.subdomains` *(Array<string>)*
+ 
+ Array of subdomains.
+
+`__route.url` *(string)*
+
+#### `path(routeName, params)`
+
+Function returns a generated URI by route name.
+
+**Example:**
+
+```javascript
+/* routes.js */
+
+module.exports = {
+    profile: {
+        path: '/users/profile/{id}/',
+    },
+};
+```
+
+```twig
+{# views/pages/index.twig #}
+
+<a href="{{ path('profile', { id: '1a2s564ws' }) }}">My profile</a>
+```
+
+In a browser you'll see:
+
+```html
+<a href="/users/profile/1a2s564ws/">My profile</a>
+```
+
 Tests
 --
 
