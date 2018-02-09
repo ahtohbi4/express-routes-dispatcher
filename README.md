@@ -284,11 +284,9 @@ Hostname.
 
 Name of the route. You can use it for example to detect a current item of the menu.
 
-`__route.query` *(Object)*
-
 `__route.params` *(Object)*
 
-Object with parameters geted from the URI.
+Object with parameters geted from the URL.
 
 `__route.path` *(string)*
 
@@ -296,15 +294,35 @@ Object with parameters geted from the URI.
 
 Protocol.
 
+`__route.query` *(Object)*
+
+Object with GET-parameters from the URL.
+
 `__route.subdomains` *(Array<string>)*
  
  Array of subdomains.
 
 `__route.url` *(string)*
 
-#### `path(routeName, params)`
+#### `path(name, options)` *(function)*
 
-Function returns a generated URI by route name.
+Function returns a generated URL by route name.
+
+`name` *(string)*
+
+Required. Name of routing to generate URL.
+
+`options` *(Object)*
+
+Additional options.
+
+`options.hash` *(string)*
+
+Fragment, separated from the preceding part by a hash `#`.
+
+`options.params` *(Object)*
+
+`options.query` *(Object)*
 
 **Example:**
 
@@ -321,13 +339,21 @@ module.exports = {
 ```twig
 {# views/pages/index.twig #}
 
-<a href="{{ path('profile', { id: '1a2s564ws' }) }}">My profile</a>
+<a href="{{ path('profile', {
+    hash: 'name',
+    params: {
+        id: '1a2s564ws',
+    },
+    query: {
+        tab: 'info',
+    },
+}) }}">My profile</a>
 ```
 
 In a browser you'll see:
 
 ```html
-<a href="/users/profile/1a2s564ws/">My profile</a>
+<a href="/users/profile/1a2s564ws/?tab=info#info">My profile</a>
 ```
 
 Tests
