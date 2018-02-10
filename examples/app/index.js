@@ -9,4 +9,6 @@ const router = new Router(routes, {
     debug: true,
 });
 
-router.start();
+router.start(({ host, port, protocol }) => {
+    console.log(`Router on ${protocol}://${host}:${port} was started.`);
+});

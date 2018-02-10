@@ -7,7 +7,6 @@ import path from 'path';
 
 import Route from './Route';
 import Routes from './Routes';
-import noop from './utils/noop';
 
 const DEFAULT_OPTIONS = {
     app: express(),
@@ -17,7 +16,7 @@ const DEFAULT_OPTIONS = {
     publicPath: '/',
 
     debug: false,
-    views: 'views',
+    viewsDir: 'views',
 
     host: 'localhost',
     port: '3000',
@@ -61,9 +60,9 @@ export default class Router {
      * @private
      */
     init(routes) {
-        const { app, baseDir, debug, publicDir, publicPath, views } = this.options;
+        const { app, baseDir, debug, publicDir, publicPath, viewsDir } = this.options;
 
-        app.set('views', path.resolve(baseDir, views));
+        app.set('views', path.resolve(baseDir, viewsDir));
         app.set('view engine', 'twig');
 
         this.routes = new Routes(routes, {
@@ -132,33 +131,38 @@ export default class Router {
     }
 
     /**
-     * Starts an application.
+     * Starts applications server.
      *
      * @param {function} [cb] - Callback function after the application was started.
      *
      * @public
      */
-    start(cb = noop) {
+    start(cb) {
         const { app, host, port, protocol } = this.options;
 
-        this.server = app
-            .listen(port, () => {
-                console.log(`Start Router on ${protocol}://${host}:${port}`);
-
-                cb.call(this);
-            });
+        this.server = app.listen(port, () => {
+            if (cb) {
+                cb.call(this, { host, port, protocol });
+            }
+        });
     }
 
-    close(cb = noop) {
+    /**
+     * Stops applications server.
+     *
+     * @param {function} [cb] - Callback function after the application was stoped.
+     *
+     * @public
+     */
+    close(cb) {
         const { app, host, port, protocol } = this.options;
 
         if (this.server && typeof this.server.close === 'function') {
-            this.server
-                .close(() => {
-                    console.log(`Close Router on ${protocol}://${host}:${port}`);
-
-                    cb.call(this);
-                });
+            this.server.close(() => {
+                if (cb) {
+                    cb.call(this, { host, port, protocol });
+                }
+            });
         }
     }
 }

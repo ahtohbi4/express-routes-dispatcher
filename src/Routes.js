@@ -19,6 +19,7 @@ export default class Routes {
 
         if (debug) {
             this.routes['__routes__'] = new Route({
+                baseDir,
                 controller: (request, response) => this.routes,
                 name: '__routes__',
                 path: '/__routes__/',

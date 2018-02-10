@@ -1,7 +1,6 @@
 import path from 'path';
 
 import createMetaObject from './utils/createMetaObject';
-import noop from './utils/noop';
 
 const schema = {
     name: undefined,
@@ -9,11 +8,8 @@ const schema = {
 };
 
 const DEFAULT_PARAMS = {
-    controller: noop,
-    defaults: {
-        // _format: 'json',
-        // _template: './template-default.twig',
-    },
+    controller: () => null,
+    defaults: {},
     methods: [
         'get',
         'post',
@@ -87,12 +83,20 @@ export default class Route extends createMetaObject(schema) {
         return path.resolve(baseDir, template);
     }
 
-    generateURI(params) {
-        return this.path
-            .replace(
-                Route.PATTERN_OF_PARAM,
-                (match, paramName) => (params[paramName] || ''),
-            );
+    generateURI({ hash = '', params = {}, query = {} } = {}) {
+        const path = this.path.replace(
+            Route.PATTERN_OF_PARAM,
+            (match, paramName) => (params[paramName] || this.defaults[paramName] || ''),
+        );
+        const queryString = Object.keys(query)
+            .filter((name) => (name !== '_keys'))
+            .reduceRight((result, name) => {
+                const separator = (result === '') ? '?' : '&';
+
+                return `${result}${separator}${name}=${query[name]}`;
+            }, '');
+
+        return `${path}${queryString}${(hash !== '') ? `#${hash}`: ''}`;
     }
 }
 

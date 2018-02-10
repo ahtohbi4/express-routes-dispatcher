@@ -1,0 +1,12 @@
+{{ path('main') }}
+
+{{ path('route', {
+    hash: 'name',
+    params: {
+        key1: 'foo',
+    },
+    query: {
+        section: 'main',
+        tab: 'info',
+    },
+}) }}
