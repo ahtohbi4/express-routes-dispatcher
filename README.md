@@ -153,22 +153,25 @@ The main class allowing to create and to start router of your application.
 | --------- | :--: | :-----: | ----------- |
 | `routes` | *Object* | — | **Required.** Object with routes description. |
 | `options` | *Object* | — | Additional options. |
-| `options.baseDir` | *string* | [\_\_dirname](https://nodejs.org/api/globals.html#globals_dirname) | Base directory to resolve relative paths, such as `publicDir`, `viewsDir` and paths of routes from `routes`. |
-| `options.debug` | *boolean* | false | If `true` the additional route [http://localhost:3000/\_\_routes\_\_/](http://localhost:3000/__routes__/) with map of all routes in JSON-format is available. |
-| `options.host` | *string* | 'localhost' | |
-| `options.port` | *number* | 3000 | |
-| `options.protocol` | *string* | 'http' | |
-| `options.publicDir` | *string* | 'public' | |
-| `options.publicPath` | *string* | '/' | |
-| `options.viewsDir` | *string* | 'views' | |
+| `options.baseDir` | *String* | [\_\_dirname](https://nodejs.org/api/globals.html#globals_dirname) | Base directory to resolve relative paths, such as `publicDir`, `viewsDir` and paths of routes from `routes`. |
+| `options.debug` | *Boolean* | `false` | If `true` the additional route [http://localhost:3000/\_\_routes\_\_/](http://localhost:3000/__routes__/) with map of all routes in JSON-format is available. |
+| `options.host` | *String* | `'localhost'` | A domain name or IP address of the server. |
+| `options.port` | *Number* | `3000` | Port of the server. |
+| `options.protocol` | *String* | `'http'` | Protocol to use. |
+| `options.publicDir` | *String* | `'public'` | Public directory. |
+| `options.publicPath` | *String* | `'/'` | URL prefix to access to the public directory. |
+| `options.viewsDir` | *String* | `'views'` | A directory for the application's views. |
 
 ```javascript
-const router = new Router(routes, options);
+import Router from 'express-routes-dispatcher';
+import routes from 'routes.js';
+
+const router = new Router(routes);
 ```
 
 ### Methods
 
-**`start(cb)`** starts and returns instance of Node.js server. Use this instance to stop server.
+**`start(cb)`** starts and returns instance of Node.js server. Use this instance to stop server by method `close()`.
 
 Function `cb` will be called after successful starting.
 
@@ -183,7 +186,11 @@ const server = router.start(({ host, port, protocol }) => {
 ```javascript
 const server = router.start();
 
-setTimeout(() => server.close(), 60000); // The server will be stopped after the 60 seconds.
+/* ... */
+
+server.close(({ host, port, protocol }) => {
+    console.log(`Server on ${protocol}://${host}:${port} was stoped.`);
+});
 ```
 
 Syntax of routes description
@@ -219,15 +226,15 @@ A routes map is an object with routes names as keys and object of routes descrip
 
 | Parameter | Type | Default | Description |
 | --------- | :--: | :-----: | ----------- |
-| `path` | *string* | — | **Required.** |
-| `controller` | *string* | — | |
+| `path` | *String* | — | **Required.** A pattern of URL path includes dynamic params enclosed in braces. For example, `/user/{id}/`. |
+| `controller` | *String* | — | A path to the controller function. |
 | `defaults` | *Object* | — | An object containing the following options: |
-| `defaults._format` | *string* | `'json'` | |
-| `defaults._template` | *string* | — | |
-| `defaults.<param>` | *number\|string* | — | |
-| `methods` | *Array* | `['get', 'post']` | An array of allowed methods for requests. Available values you can find [here](http://expressjs.com/en/4x/api.html#routing-methods). |
+| `defaults._format` | *String* | `'json'` | The format of the response. |
+| `defaults._template` | *String* | — | A path to template. |
+| `defaults.<param>` | *Number\|String* | — | Default values of dynamic params from `path`. |
+| `methods` | *Array\<String\>* | `['get', 'post']` | An array of allowed methods for requests. Available values you can find [here](http://expressjs.com/en/4x/api.html#routing-methods). |
 | `requirements` | *Object* | `{}` | An object containing the following options: |
-| `requirements.<param>` | *string* | — | |
+| `requirements.<param>` | *String* | — | Requirements for dynamic params from `path`. |
 
 ```
 /* External routing description */
@@ -246,8 +253,8 @@ A routes map is an object with routes names as keys and object of routes descrip
 
 | Parameter | Type | Default | Description |
 | --------- | :--: | :-----: | ----------- |
-| `resource` | *string* | — | **Required.** |
-| `prefix` | *string* | — | |
+| `resource` | *String* | — | **Required.** A path to the file of external routing description. |
+| `prefix` | *String* | — | Prefix for parameter 'path' of plugged routes. |
 
 Using templates
 --
@@ -262,14 +269,14 @@ For all templates are available some global variables and functions.
 
 | Parameter | Type | Description |
 | --------- | :----: | ----------- |
-| `__route.host` | *string* | Hostname. |
-| `__route.name` | *string* | Name of the route. You can use it for example to detect a current item of the menu. |
+| `__route.host` | *String* | Hostname. |
+| `__route.name` | *String* | Name of the route. You can use it for example to detect a current item of the menu. |
 | `__route.params` | *Object* | Object with parameters geted from the URL. |
-| `__route.path` | *string* | |
+| `__route.path` | *String* | The `path` part of the route. |
 | `__route.protocol` | *'http'\|'https'* | Protocol. |
-| `__route.query` | *Object* | Object with GET-parameters from the URL. |
-| `__route.subdomains` | *Array<string>* | Array of subdomains. |
-| `__route.url` | *string* | |
+| `__route.query` | *Object* | Object with GET-params from the URL. |
+| `__route.subdomains` | *Array<String>* | Array of subdomains. |
+| `__route.url` | *String* | The whole request URL includes GET-params. |
 
 **Example:**
 
@@ -287,11 +294,11 @@ For all templates are available some global variables and functions.
 
 | Parameter | Type | Description |
 | --------- | :----: | ----------- |
-| `name` | *string* | **Required.** Name of routing to generate URL. |
+| `name` | *String* | **Required.** Name of routing to generate URL. |
 | `options` | *Object* | Additional options. |
-| `options.hash` | *string* | Fragment, separated from the preceding part by a hash `#`. |
-| `options.params` | *Object* | |
-| `options.query` | *Object* | |
+| `options.hash` | *String* | Fragment, separated from the preceding part by a hash `#`. |
+| `options.params` | *Object* | 'Key-value' pairs to define values of parameters for the path. |
+| `options.query` | *Object* | 'Key-value' pairs to define values of GET-parameters. |
 
 **Example:**
 
@@ -329,8 +336,8 @@ Tests
 --
 
 ```bash
-$ npm install
-$ npm test
+$ yarn install
+$ yarn test
 ```
 
 License
