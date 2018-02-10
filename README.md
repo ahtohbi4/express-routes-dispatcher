@@ -256,38 +256,42 @@ Twig is a powerful template engine. More about it you can read [in official docu
 
 For all templates are available some global variables and functions.
 
-#### `__route` *(Object)*
+#### Constants
 
-An object which contains parameters of the current route.
-
-| Parameter | Type | Description |
-| --------- | :----: | ----------- |
-| `host` | *string* | Hostname. |
-| `name` | *string* | Name of the route. You can use it for example to detect a current item of the menu. |
-| `params` | *Object* | Object with parameters geted from the URL. |
-| `path` | *string* | |
-| `protocol` | *('http'\|'https')* | Protocol. |
-| `query` | *Object* | Object with GET-parameters from the URL. |
-| `subdomains` | *Array<string>* | Array of subdomains. |
-| `url` | *string* | |
-
-#### `path(name, options)` *(function)*
-
-Function returns a generated URL by route name.
-
-`name` *(string)*
-
-Required. Name of routing to generate URL.
-
-`options` *(Object)*
-
-Additional options.
+**`__route`** is an object which contains parameters of the current route.
 
 | Parameter | Type | Description |
 | --------- | :----: | ----------- |
-| `hash` | *string* | Fragment, separated from the preceding part by a hash `#`. |
-| `params` | *Object* | |
-| `query` | *Object* | |
+| `__route.host` | *string* | Hostname. |
+| `__route.name` | *string* | Name of the route. You can use it for example to detect a current item of the menu. |
+| `__route.params` | *Object* | Object with parameters geted from the URL. |
+| `__route.path` | *string* | |
+| `__route.protocol` | *'http'\|'https'* | Protocol. |
+| `__route.query` | *Object* | Object with GET-parameters from the URL. |
+| `__route.subdomains` | *Array<string>* | Array of subdomains. |
+| `__route.url` | *string* | |
+
+**Example:**
+
+```twig
+{% if (__route.name == 'main') %}
+    <span>Main page</span>
+{% else %}
+    <a href="{{ path('main') }}">Main page</a>
+{% endif %}
+```
+
+#### Functions
+
+**`path(name, options)`** is a function returns a generated URL by route name. Accepted parameters:
+
+| Parameter | Type | Description |
+| --------- | :----: | ----------- |
+| `name` | *string* | **Required.** Name of routing to generate URL. |
+| `options` | *Object* | Additional options. |
+| `options.hash` | *string* | Fragment, separated from the preceding part by a hash `#`. |
+| `options.params` | *Object* | |
+| `options.query` | *Object* | |
 
 **Example:**
 
