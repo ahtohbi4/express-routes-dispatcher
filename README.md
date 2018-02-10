@@ -178,7 +178,7 @@ Function `cb` will be called after successful starting.
 ```javascript
 const server = router.start(({ host, port, protocol }) => {
     console.log(`Server on ${protocol}://${host}:${port} was started.`);
-});
+}); // -> "Server on http://localhost:3000 was started."
 ```
 
 **`close(cb)`** stops server.
@@ -190,10 +190,10 @@ const server = router.start();
 
 server.close(({ host, port, protocol }) => {
     console.log(`Server on ${protocol}://${host}:${port} was stoped.`);
-});
+}); // -> "Server on http://localhost:3000 was stoped."
 ```
 
-Syntax of routes description
+Writing routes
 --
 
 A routes map is an object with routes names as keys and object of routes descriptions as values.
@@ -256,7 +256,34 @@ A routes map is an object with routes names as keys and object of routes descrip
 | `resource` | *String* | — | **Required.** A path to the file of external routing description. |
 | `prefix` | *String* | — | Prefix for parameter 'path' of plugged routes. |
 
-Using templates
+Writing controllers
+--
+
+Controller is a function which accepts as a parameter the object [`request`](http://expressjs.com/en/4x/api.html#req) and returns data object. This data will be able in the template.
+
+**Example**
+
+```javascript
+/* controller.js */
+
+module.exports = (request) => {
+    const { params: { id } } = request;
+
+    return {
+        data: {
+            id: id,
+        },
+    };
+};
+```
+
+```twig
+{# index.twig #}
+
+<p>Parameter "id" from URL is {{ data.id }}</p>
+```
+
+Writing templates
 --
 
 Twig is a powerful template engine. More about it you can read [in official documentation](https://twig.symfony.com/doc/2.x/).
