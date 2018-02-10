@@ -3,7 +3,7 @@ import path from 'path';
 import url from 'url';
 
 import Route from './Route';
-import joinURI from './utils/joinURI';
+import normalizeURI from './utils/normalizeURI';
 
 export default class Routes {
     constructor(routes, options = {}) {
@@ -55,7 +55,7 @@ Routes.normalize = (routes, baseDir = '', basePrefix = '') => {
                             ...Routes.normalize(
                                 subRoutes,
                                 path.resolve(baseDir, path.dirname(resource),),
-                                joinURI(basePrefix, prefix),
+                                normalizeURI(basePrefix, prefix),
                             ),
                         };
                     }
@@ -66,7 +66,7 @@ Routes.normalize = (routes, baseDir = '', basePrefix = '') => {
                             ...route,
                             baseDir,
                             name,
-                            path: joinURI(basePrefix, route.path),
+                            path: normalizeURI(basePrefix, route.path),
                         }),
                     };
                 }, {});
