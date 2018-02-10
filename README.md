@@ -20,6 +20,16 @@ In this implementation, the routing is based on JSON format, which is a map from
 
 The format is similar to the syntax of [Symfony](https://symfony.com/doc/current/routing.html) YAML based Routing.
 
+1. [Installation](#installation)
+1. [Usage](#usage)
+1. [Class `Router`](#class-router)
+1. [Writing routes](#writing-routes)
+1. [Writing controllers](#writing-controllers)
+1. [Writing templates](#writing-templates)
+1. [Demo](#demo)
+1. [Tests](#tests)
+1. [License](#license)
+
 Installation
 --
 
@@ -278,7 +288,7 @@ In a browser you'll see:
 <a href="/users/profile/1a2s564ws/?tab=info#info">My profile</a>
 ```
 
-Example
+Demo
 --
 
 You can try it on the example application. To launch:
@@ -292,7 +302,7 @@ $ yarn start
 
 Then open [http://localhost:3000](http://localhost:3000) in your favorite browser.
 
-> :warning: Caution! The demo application uses [CSS Grid Layout](https://caniuse.com/#feat=css-grid).
+> :warning: The demo application uses [CSS Grid Layout](https://caniuse.com/#feat=css-grid).
 
 Tests
 --
