@@ -278,10 +278,28 @@ In a browser you'll see:
 <a href="/users/profile/1a2s564ws/?tab=info#info">My profile</a>
 ```
 
+Example
+--
+
+You can try it on the example application. To launch:
+
+```bash
+$ git clone https://github.com/ahtohbi4/express-routes-dispatcher.git
+$ cd express-routes-dispatcher
+$ yarn install
+$ yarn start
+```
+
+Then open [http://localhost:3000](http://localhost:3000) in your favorite browser.
+
+> :warning: Caution! The demo application uses [CSS Grid Layout](https://caniuse.com/#feat=css-grid).
+
 Tests
 --
 
 ```bash
+$ git clone https://github.com/ahtohbi4/express-routes-dispatcher.git
+$ cd express-routes-dispatcher
 $ yarn install
 $ yarn test
 ```
