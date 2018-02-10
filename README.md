@@ -36,109 +36,28 @@ $ yarn add express-routes-dispatcher
 Usage
 --
 
-The module which allows organizing simple and clear MVC-architecture in your Node.js application.
-
-For example, there are a page with list of articles `/articles/` and pages with one article (for example, `/articles/some-aticle-page/`). In this case, application architecture might look like:
+The Router allows you to organize simple and clear MVC-architecture in your Node.js application. Structure of directories can be the next:
 
 ```
 app/                          // Application root.
- ├─ modules/                  // Modules.
- │   ├─ articles/
- │   │   ├─ controllers/      // Module`s controllers.
- │   │   ├─ models/           // Module`s models.
- │   │   ├─ views/            // Module`s templates such as pages, partials or blocks (BEM).
- │   │   └─ routing.js        // Module`s routing.
- │   └─ •••
+ ├─ modules/                  // The directory containing folders of modules.
+ │   ├─ Users/                // Module "Users"
+ │   │   ├─ controllers/      // Controllers of the module.
+ │   │   ├─ models/           // Models of the module.
+ │   │   ├─ views/            // Templates such as pages, partials or blocks (BEM) of the module.
+ │   │   └─ routing.js        // Routing of the module.
+ │   └─ •••                   // Other modules.
  ├─ views/                    // Common templates such as static pages, partials or blocks (BEM).
  ├─ config.js                 // Config file.
  ├─ index.js                  // The entry point of the application.
- └─ routing.js                // Base routing file. Includes common static pages and routing files of modules.
+ └─ routes.js                 // Base routing file. Includes common static pages and routing files of modules.
 ```
 
-The entry point `index.js` processes all HTTP-requests.
+The entry point of the application is `index.js`. It processes all HTTP-requests.
 
-```javascript
-// app/index.js
+File `routes.js` describes the URLs, controllers for processing requests by this URLs and templates to returning response data by the controller.
 
-const express = require('express');
-const app = express();
-
-const router = require('express-routes-dispatcher');
-router(app, {
-    file: './config/routes.json'
-});
-```
-
-File `routes.js` describes the URIs, controllers for processing requests by this URIs and templates to returning response data by the controller:
-
-```javascript
-module.exports = {
-    "articles_list": {
-        "path": "/articles/",
-        "defaults": {
-            "_controller": "modules/Article/controllers/list.js",
-            "_template": "modules/Article/views/list.html.twig"
-        }
-    },
-    "articles_item": {
-        "path": "/articles/{alias}/",
-        "defaults": {
-            "_controller": "modules/Article/controllers/item.js",
-            "_template": "modules/Article/views/item.html.twig"
-        },
-        "requirements": {
-            "alias": "[a-zA-z-_0-9]+"
-        }
-    }
-}
-```
-
-The controller is a ordinary JavaScript module ([Express.js middleware](http://expressjs.com/en/guide/using-middleware.html)), with two optional parameters `request` and `response`:
-
-```javascript
-// modules/Article/controllers/list.js
-
-module.exports = function (request, response) {
-    return {
-        data: {}
-    };
-};
-```
-
-Also, it is possible to design separate modules, which in turn can be used in your other applications. For example, use them as Git's submodules and connect external routes of this module into their applications.
-
-Example of file `app/config/routes.json` of a project that uses a News module with its own routes:
-
-```json
-{
-    "welcome_page": {
-        "path": "/",
-        "defaults": {
-            "_controller": "modules/Default/index.js",
-            "_template": "app/Resources/views/pages/welcome_page.html.twig"
-        }
-    },
-
-    "_news": {
-        "prefix": "/news",
-        "resource": "modules/News/config/routing.json"
-    }
-}
-```
-
-Example of the external `modules/News/config/routing.json`:
-
-```json
-{
-    "list": {
-        "path": "/",
-        "defaults": {
-            "_controller": "modules/News/controller/list.js",
-            "_template": "modules/News/views/list.html.twig"
-        }
-    }
-}
-```
+See [the example of application](examples/).
 
 Class `Router`
 --
@@ -290,7 +209,7 @@ Twig is a powerful template engine. More about it you can read [in official docu
 
 For all templates are available some global variables and functions.
 
-### Constants
+### Twig constants
 
 **`__route`** is an object which contains parameters of the current route.
 
@@ -315,7 +234,7 @@ For all templates are available some global variables and functions.
 {% endif %}
 ```
 
-### Functions
+### Twig functions
 
 **`path(name, options)`** is a function returns a generated URL by route name. Accepted parameters:
 
