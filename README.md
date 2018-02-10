@@ -47,7 +47,7 @@ app/                          // Application root.
  │   │   ├─ controllers/      // Module`s controllers.
  │   │   ├─ models/           // Module`s models.
  │   │   ├─ views/            // Module`s templates such as pages, partials or blocks (BEM).
- │   │   └─ routing.json      // Module`s routing.
+ │   │   └─ routing.js        // Module`s routing.
  │   └─ •••
  ├─ views/                    // Common templates such as static pages, partials or blocks (BEM).
  ├─ config.js                 // Config file.
@@ -152,13 +152,13 @@ Returns instance of Router.
 | `routes` | *Object* | — | **Required.** Object with routes description. |
 | `options` | *Object* | — | Additional options. |
 | `options.baseDir` | *string* | [\_\_dirname](https://nodejs.org/api/globals.html#globals_dirname) | Base directory to resolve relative paths, such as `publicDir`, `viewsDir` and paths of routes from `routes`. |
-| `options.publicDir` | *string* | 'public' | |
-| `options.publicPath` | *string* | '/' | |
 | `options.debug` | *boolean* | false | If `true` the additional route [http://localhost:3000/\_\_routes\_\_/](http://localhost:3000/__routes__/) with map of all routes in JSON-format is available. |
-| `options.viewsDir` | *string* | 'views' | |
 | `options.host` | *string* | 'localhost' | |
 | `options.port` | *number* | 3000 | |
 | `options.protocol` | *string* | 'http' | |
+| `options.publicDir` | *string* | 'public' | |
+| `options.publicPath` | *string* | '/' | |
+| `options.viewsDir` | *string* | 'views' | |
 
 ```javascript
 const router = new Router(routes, options);
@@ -186,65 +186,68 @@ const server = router.start();
 setTimeout(() => server.close(), 60000); // The server will be stopped after the 60 seconds.
 ```
 
-Syntax of inline routes
+Syntax of routes description
 --
 
-#### _\<route name\>_
+A routes map is an object with routes names as keys and object of routes descriptions as values.
 
-String. Should be unique, otherwise, a last declared route with the same name will override earlier ones.
+#### Formal syntax
 
-#### path
+```
+/* Inline routing description */
 
-_Required_
+{
+    <route name>: {
+        path: <URL>,
 
-#### defaults
+        controller: <a path to the controller function>,
+        defaults: {
+            _format: <the format of a response>,
+            _template: <a path to the template>,
+            <pairs 'key-value' to define default values of parameters from the path>,
+        },
+        methods: <an array of allowed methods for requests>,
+        requirements: {
+            <pairs 'key-value' to define requirements for values of parameters from the path>,
+        },
+    },
+    ...
+}
+```
 
-_Required as a parent of required parameter `_controller`_
+`<route name>` is a string. It should be unique, otherwise, a last declared route with the same name will override earlier ones.
 
-Object. Contains the following options:
+| Parameter | Type | Default | Description |
+| --------- | :--: | :-----: | ----------- |
+| `path` | *string* | — | **Required.** |
+| `controller` | *string* | — | |
+| `defaults` | *Object* | — | An object containing the following options: |
+| `defaults._format` | *string* | `'json'` | |
+| `defaults._template` | *string* | — | |
+| `defaults.<param>` | *number\|string* | — | |
+| `methods` | *Array* | `['get', 'post']` | An array of allowed methods for requests. Available values you can find [here](http://expressjs.com/en/4x/api.html#routing-methods). |
+| `requirements` | *Object* | `{}` | An object containing the following options: |
+| `requirements.<param>` | *string* | — | |
 
-#### _controller
+```
+/* External routing description */
 
-_Required_
+{
+    <routes branch name>: {
+        resource: <a path to the file of external routing description>,
 
-#### _format
+        prefix: <prefix for parameter 'path' of plugged routes>,
+    },
+    ...
+}
+```
 
-String.
+`<routes branch name>` is a string. It should be also unique.
 
-#### _template
-
-String.
-
-#### _\<variable from `path`\>_
-
-String.
-
-#### requirements
-
-Object. Contains the following options:
-
-#### _format
-
-#### _\<variable from `path`\>_
-
-RegExp.
-
-#### methods
-
-String or Array. Allowed methods for requests.
-
-Syntax of external routes
---
-
-#### resource
-
-_Required_
-
-#### prefix
-
-String.
-
-For more details see tests in `spec/`.
+| Parameter | Type | Default | Description |
+| --------- | :--: | :-----: | ----------- |
+| `resource` | *string* | — | **Required.** |
+| `prefix` | *string* | — | |
 
 Using templates
 --
