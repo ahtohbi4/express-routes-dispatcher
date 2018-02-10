@@ -27,8 +27,7 @@
   },
   "homepage": "https://github.com/ahtohbi4/express-routes-dispatcher#readme",
   "dependencies": {
-    "express": "^4.13.3",
-    "mime-types": "^2.1.11"
+    "express": "^4.16.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -38,7 +37,7 @@
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "mocha": "^5.0.0",
-    "request": "^2.67.0",
+    "request": "^2.83.0",
     "twig": "^1.10.5"
   },
   "babel": {
