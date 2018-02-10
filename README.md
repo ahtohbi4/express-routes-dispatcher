@@ -143,9 +143,11 @@ Example of the external `modules/News/config/routing.json`:
 Class `Router`
 --
 
-#### Constructor `new Router(routes, options)`
+The main class allowing to create and to start router of your application.
 
-Returns instance of Router.
+### Constructor
+
+`new Router(routes, options)` returns instance of the Router.
 
 | Parameter | Type | Default | Description |
 | --------- | :--: | :-----: | ----------- |
@@ -164,9 +166,9 @@ Returns instance of Router.
 const router = new Router(routes, options);
 ```
 
-#### Method `start(cb)`
+### Methods
 
-Starts and returns instance of Node.js server. Use this instance to stop server.
+**`start(cb)`** starts and returns instance of Node.js server. Use this instance to stop server.
 
 Function `cb` will be called after successful starting.
 
@@ -176,9 +178,7 @@ const server = router.start(({ host, port, protocol }) => {
 });
 ```
 
-#### Method `close(cb)`
-
-Stops server.
+**`close(cb)`** stops server.
 
 ```javascript
 const server = router.start();
@@ -191,7 +191,7 @@ Syntax of routes description
 
 A routes map is an object with routes names as keys and object of routes descriptions as values.
 
-#### Formal syntax
+### Formal syntax
 
 ```
 /* Inline routing description */
@@ -256,7 +256,7 @@ Twig is a powerful template engine. More about it you can read [in official docu
 
 For all templates are available some global variables and functions.
 
-#### Constants
+### Constants
 
 **`__route`** is an object which contains parameters of the current route.
 
@@ -281,7 +281,7 @@ For all templates are available some global variables and functions.
 {% endif %}
 ```
 
-#### Functions
+### Functions
 
 **`path(name, options)`** is a function returns a generated URL by route name. Accepted parameters:
 
