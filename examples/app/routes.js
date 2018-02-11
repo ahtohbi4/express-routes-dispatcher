@@ -8,10 +8,10 @@ module.exports = {
     },
     users: {
         prefix: '/users',
-        resource: 'modules/users/routes.js',
+        resource: 'modules/Users/routes.js',
     },
     posts: {
         prefix: '/posts',
-        resource: 'modules/posts/routes.js',
+        resource: 'modules/Posts/routes.js',
     },
 };

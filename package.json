@@ -6,7 +6,7 @@
     "node": ">=6.5.0"
   },
   "scripts": {
-    "start": "./node_modules/.bin/babel-node examples/app",
+    "start": "./node_modules/.bin/babel-node node_modules/.bin/gulp watch & ./node_modules/.bin/babel-node examples/app",
     "test": "node_modules/.bin/mocha --recursive --require babel-register",
     "test:watch": "yarn run test --watch"
   },
@@ -30,13 +30,20 @@
     "express": "^4.16.2"
   },
   "devDependencies": {
+    "autoprefixer": "^7.2.6",
     "babel-cli": "^6.26.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-3": "^6.24.1",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^7.0.1",
+    "gulp-sourcemaps": "^2.6.4",
     "mocha": "^5.0.0",
+    "postcss-csso": "^3.0.0",
     "request": "^2.83.0",
     "twig": "^1.10.5"
   },
