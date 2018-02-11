@@ -2,15 +2,18 @@
 
 {% import '../../blocks/avatar/index.twig' as avatar %}
 {% import '../../blocks/user/index.twig' as user %}
+{% import '../../../../../views/blocks/linkToJson/index.twig' as linkToJson %}
 
 {% block title %}{{ data.user.name|escape('html') }} | User{% endblock %}
 
 {% block content %}
-    <h1>{{ data.user.name }}</h1>
-
-    <p>
-        <a href="{{ path('user_json', { id: data.user.id }) }}">See JSON</a>
-    </p>
+    <h1>
+        {{- data.user.name }} {{ linkToJson.render(path('user_json', {
+            params: {
+                id: data.user.id,
+            },
+        })) -}}
+    </h1>
 
     {% if data.user %}
         {{ avatar.render({

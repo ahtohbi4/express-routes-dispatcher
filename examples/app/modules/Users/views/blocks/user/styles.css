@@ -1,0 +1,38 @@
+.user {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.user::after {
+    display: table;
+    clear: both;
+    content: '';
+}
+
+.user__avatar {
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.user__info {
+    margin-left: 20px;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.user_size_xs .user__info {
+    margin-left: 10px;
+}
+
+.user__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.user_size_xs .user__title {
+    color: #93959a;
+    font-size: 11px;
+}

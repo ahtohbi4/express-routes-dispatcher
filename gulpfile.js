@@ -8,8 +8,11 @@ import sourcemaps from 'gulp-sourcemaps';
 import csso from 'postcss-csso';
 
 const SRC_DIR_CSS = [
+    'node_modules/normalize.css/normalize.css',
+    'examples/app/views/styles.css',
+    'examples/app/views/blocks/**/*.css',
+    'examples/app/views/pages/**/*.css',
     'examples/app/modules/**/*.css',
-    'examples/app/views/**/*.css',
 ];
 
 const BUILD_DIR = 'examples/app/public/build';

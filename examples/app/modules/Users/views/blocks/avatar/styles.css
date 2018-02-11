@@ -1,0 +1,34 @@
+.avatar {
+    position: relative;
+    background-color: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.avatar_size_xs {
+    width: 20px;
+}
+
+.avatar_size_s {
+    width: 30px;
+}
+
+.avatar_size_l {
+    width: 80px;
+}
+
+.avatar::after {
+    display: block;
+    padding-top: 100%;
+    content: '';
+}
+
+.avatar__userpic {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

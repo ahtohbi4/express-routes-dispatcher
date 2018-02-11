@@ -1,22 +1,18 @@
 {% extends '../../../../../views/layout.twig' %}
 
 {% import '../../blocks/post/index.twig' as post %}
+{% import '../../../../../views/blocks/grid/index.twig' as grid %}
+{% import '../../../../../views/blocks/linkToJson/index.twig' as linkToJson %}
 
 {% block content %}
-    <h1>Posts</h1>
-
-    <p>
-        <a href="{{ path('posts_json') }}">See JSON</a>
-    </p>
+    <h1>Posts {{ linkToJson.render(path('posts_json')) }}</h1>
 
     {% if data.posts %}
-        <ol>
+        {{ grid.start() }}
             {% for postParams in data.posts %}
-                <li>
-                    {{ post.render(postParams) }}
-                </li>
+                {{ post.render(postParams) }}
             {% endfor %}
-        </ol>
+        {{ grid.end() }}
     {% else %}
         <p>No posts found.</p>
     {% endif %}

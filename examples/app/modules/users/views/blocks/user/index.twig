@@ -19,27 +19,29 @@
     {% set location = params.location|default('') %}
 
     {% set options = options|default({}) %}
+    {% set SIZES = ['xs', 's', 'l'] %}
+    {% set size = (options.size in SIZES) ? options.size : 'l' %}
     {% set withLink = options.withLink|default(false) %}
 
     {% set title %}
         {{- name -}}
-        {% if age %}, {{ age }} years old{% endif -%}
+        {% if age and (size != 'xs') %}, {{ age }} years old{% endif -%}
     {% endset %}
 
-    <section class="user" data-id="{{ id }}">
+    <section class="user user_size_{{ size }}" data-id="user-{{ id }}">
         <div class="user__avatar">
             {{ avatar.render({
                 name: name,
                 path: avatarPath,
             }, {
-                size: 's',
+                size: size,
             }) }}
         </div>
 
         <div class="user__info">
             <h3 class="user__title">
                 {%- if withLink %}
-                    <a href="{{ path('user', { id: id }) }}">
+                    <a href="{{ path('user', { params: { id: id } }) }}">
                         {{- title -}}
                     </a>
                 {% else %}
@@ -47,7 +49,7 @@
                 {% endif -%}
             </h3>
 
-            {% if location %}
+            {% if location and (size != 'xs') %}
                 <p>Location: {{ location }}</p>
             {% endif %}
         </div>

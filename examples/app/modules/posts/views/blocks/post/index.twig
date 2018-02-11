@@ -1,24 +1,29 @@
 {% macro render(params) %}
     {% set author = params.author %}
-    {% set description = params.description %}
     {% set datetime = params.datetime %}
     {% set id = params.id %}
+    {% set title = params.title %}
 
-    <section class="post" data-id="{{ id }}">
-        <div>
-            {{ description|nl2br }}
-        </div>
+    {% import '../../../../Users/views/blocks/user/index.twig' as user %}
 
-        <div>
-            <time datetime="{{ datetime }}">
+    <section class="post" data-id="post-{{ id }}">
+        <div class="post__content">
+            <h3 class="post__title">
+                <a class="post__link" href="{{ path('post', { params: { id: id } }) }}">
+                    {{- title|nl2br -}}
+                </a>
+            </h3>
+
+            <time class="post__datetime" datetime="{{ datetime }}">
                 {{- date(datetime)|date('D, j M Y G:i') -}}
             </time>
+        </div>
 
-            <span> by </span>
-
-            <a href="{{ path('user', { id: author.id }) }}">
-                {{- author.name -}}
-            </a>
-        <div>
+        <footer class="post__footer">
+            {{ user.render(author, {
+                size: 'xs',
+                withLink: true,
+            }) }}
+        </footer>
     </section>
 {% endmacro %}

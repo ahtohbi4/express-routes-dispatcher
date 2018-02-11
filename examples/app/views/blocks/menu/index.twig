@@ -1,7 +1,4 @@
 {% set menu = {
-    main: {
-        label: 'Main',
-    },
     users: {
         label: 'Users',
     },
@@ -11,14 +8,23 @@
 } %}
 
 <nav class="menu">
-    <ul>
+    <ul class="menu__items-list">
         {% for name, item in menu %}
-            <li>
+            {% set isCurrent = (name == __route.name) %}
+
+            {% set itemClass %}
+                {{ [
+                    'menu__item',
+                    isCurrent ? 'menu__item_active' : '',
+                ]|join(' ')|trim }}
+            {% endset %}
+
+            <li class="{{ itemClass }}">
                 {% set href %}
-                    {%- if (name != __route.name) %} href="{{ path(name) }}"{% endif -%}
+                    {%- if (not isCurrent) %} href="{{ path(name) }}"{% endif -%}
                 {% endset %}
 
-                <a{{ href }}>
+                <a class="menu__link"{{ href }}>
                     {{- item.label -}}
                 </a>
             </li>

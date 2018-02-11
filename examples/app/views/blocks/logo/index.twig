@@ -1,0 +1,11 @@
+{% set attributes -%}
+    aria-label="Logo of the demo application" class="logo"
+{%- endset %}
+
+{% if (__route.name != 'main') %}
+    {% set attributes -%}
+        {{ attributes }} href="/"
+    {%- endset %}
+{% endif %}
+
+<a {{ attributes }}></a>

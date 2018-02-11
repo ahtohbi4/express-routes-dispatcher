@@ -12,14 +12,20 @@
         <link rel="stylesheet" href="/static/build/styles.css">
     </head>
 
-    <body>
-        <aside>
+    <body class="layout">
+        <aside class="layout__column-left">
+            {% include './blocks/logo/index.twig' %}
+
             {% include './blocks/menu/index.twig' %}
         </aside>
 
-        <main>
+        {% include './blocks/header/index.twig' %}
+
+        <main class="layout__content">
             {% block content %}{% endblock %}
         </main>
+
+        {% include './blocks/footer/index.twig' %}
     </body>
 </html>
 {% endspaceless %}

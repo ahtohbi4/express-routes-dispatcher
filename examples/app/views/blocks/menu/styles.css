@@ -1,3 +1,33 @@
 .menu {
     display: block;
 }
+
+.menu__items-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu__item {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.menu__link {
+    display: block;
+    padding: 10px;
+    background-color: transparent;
+    color: #93959a;
+    font-size: 9px;
+    line-height: 10px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-sizing: border-box;
+}
+
+.menu__item_active .menu__link {
+    background-color: #f7f7f7;
+    box-shadow: inset 3px 0 0 #278f86;
+}

@@ -10,7 +10,7 @@
     {% set path = params.path %}
 
     {% set options = options|default({}) %}
-    {% set SIZES = ['s', 'l'] %}
+    {% set SIZES = ['xs', 's', 'l'] %}
     {% set size = (options.size in SIZES) ? options.size : 'l' %}
 
     <div class="avatar avatar_size_{{ size }}">

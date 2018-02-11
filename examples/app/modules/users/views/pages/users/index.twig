@@ -1,20 +1,23 @@
 {% extends '../../../../../views/layout.twig' %}
 
 {% import '../../blocks/user/index.twig' as user %}
+{% import '../../../../../views/blocks/grid/index.twig' as grid %}
+{% import '../../../../../views/blocks/linkToJson/index.twig' as linkToJson %}
 
 {% block title %}Users{% endblock %}
 
 {% block content %}
-    <h1>Users</h1>
+    <h1>Users {{ linkToJson.render(path('users_json')) }}</h1>
 
-    <p>
-        <a href="{{ path('users_json') }}">See JSON</a>
-    </p>
-
-    {% for userParams in data.users %}
-        {{ user.render(userParams, {
-            withLink: true,
-        }) }}
+    {% if (data.users|length > 0) %}
+        {{ grid.start() }}
+            {% for userParams in data.users %}
+                {{ user.render(userParams, {
+                    size: 's',
+                    withLink: true,
+                }) }}
+            {% endfor %}
+        {{ grid.end() }}
     {% else %}
         <p>No users found.</p>
     {% endif %}
