@@ -1,6 +1,6 @@
 {
   "name": "express-routes-dispatcher",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "Routing for expressjs",
   "engines": {
     "node": ">=6.5.0"
