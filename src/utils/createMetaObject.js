@@ -12,10 +12,10 @@ export default function createMetaObject(schema) {
 
             Object.keys(schema)
                 .forEach((name) => {
-                    if (params[name] === undefined) {
+                    if (typeof params[name] === 'undefined') {
                         missedParams = [
                             ...missedParams,
-                            name
+                            name,
                         ];
                     }
                 });
@@ -24,5 +24,5 @@ export default function createMetaObject(schema) {
                 throw new Error(`Required parameters (${missedParams.join(', ')}) were missed.`);
             }
         }
-    }
+    };
 }

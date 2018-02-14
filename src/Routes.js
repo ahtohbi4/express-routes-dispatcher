@@ -1,6 +1,4 @@
-import fs from 'fs';
 import path from 'path';
-import url from 'url';
 
 import Route from './Route';
 import normalizeURI from './utils/normalizeURI';
@@ -20,7 +18,7 @@ export default class Routes {
         if (debug) {
             this.routes['__routes__'] = new Route({
                 baseDir,
-                controller: (request, response) => this.routes,
+                controller: () => this.routes,
                 name: '__routes__',
                 path: '/__routes__/',
             });

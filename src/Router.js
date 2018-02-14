@@ -1,8 +1,5 @@
 import express from 'express';
-import fs from 'fs';
-import mime from 'mime-types';
 import twig from 'twig';
-import url from 'url';
 import path from 'path';
 
 import Route from './Route';
@@ -22,8 +19,6 @@ const DEFAULT_OPTIONS = {
     port: '3000',
     protocol: 'http',
 };
-
-const URI_ROUTES = '/__routes/';
 
 export default class Router {
     /**
@@ -155,7 +150,7 @@ export default class Router {
      * @public
      */
     close(cb) {
-        const { app, host, port, protocol } = this.options;
+        const { host, port, protocol } = this.options;
 
         if (this.server && typeof this.server.close === 'function') {
             this.server.close(() => {

@@ -4,7 +4,7 @@ const usersModel = require('../../Users/models/usersModel');
 
 const Comments = function (data) {
     this.data = data;
-}
+};
 
 Comments.prototype.get = function () {
     return this.data.map((comment) => Object.assign({}, comment, {
