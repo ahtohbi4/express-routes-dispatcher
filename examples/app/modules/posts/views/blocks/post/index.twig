@@ -26,16 +26,18 @@
 
         <footer class="post__footer">
             {% if withAuthor %}
-                {{ user.render(author, {
-                    size: 'xs',
-                    withLink: true,
-                }) }}
+                <div class="post__author">
+                    {{ user.render(author, {
+                        size: 'xs',
+                        withLink: true,
+                    }) }}
+                </div>
             {% endif %}
 
-            <div>
+            <div class="post__views">
             </div>
 
-            <div>
+            <div class="post__comments">
                 {{ commentsCounter.render({
                     value: comments,
                 }) }}

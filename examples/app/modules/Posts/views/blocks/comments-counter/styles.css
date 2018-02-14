@@ -1,5 +1,11 @@
 .comments-counter {
     display: inline-block;
-    padding-left: 50px;
+    padding-left: 23px;
+    background-image: url(Posts/views/blocks/comments-counter/images/icon.svg);
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    background-size: 13px auto;
+    color: #4a4a4a;
+    font-size: 11px;
     vertical-align: top;
 }

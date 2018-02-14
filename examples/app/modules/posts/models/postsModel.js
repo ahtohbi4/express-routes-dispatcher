@@ -19,7 +19,7 @@ Posts.prototype.getPostById = function (id) {
 };
 
 Posts.prototype.getPostsByAuthor = function (author, limit) {
-    const result = this.get().filter((post) => (post.author === author));
+    const result = this.get().filter((post) => (post.author.id === author));
 
     if (limit) {
         return result.slice(0, limit);

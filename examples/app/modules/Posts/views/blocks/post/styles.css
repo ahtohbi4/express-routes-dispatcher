@@ -38,4 +38,9 @@
     flex-wrap: nowrap;
     flex-grow: 0;
     flex-shrink: 0;
+    justify-content: space-between;
+}
+
+.post__comments {
+    justify-self: flex-end;
 }
