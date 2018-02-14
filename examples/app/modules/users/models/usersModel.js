@@ -2,7 +2,7 @@ const users = require('../../../../data/users.json');
 
 const Users = function (data) {
     this.data = data;
-}
+};
 
 Users.prototype.get = function () {
     return this.data;

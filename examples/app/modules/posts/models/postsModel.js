@@ -5,7 +5,7 @@ const usersModel = require('../../Users/models/usersModel');
 
 const Posts = function (data) {
     this.data = data;
-}
+};
 
 Posts.prototype.get = function () {
     return this.data.map((post) => Object.assign({}, post, {

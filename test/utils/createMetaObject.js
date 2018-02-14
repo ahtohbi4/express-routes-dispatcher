@@ -19,4 +19,4 @@ describe('Function "createMetaObject"', function () {
             { baz: 'BAZ', foo: 'FOO' },
         ),
     );
-})
+});
