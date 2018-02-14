@@ -8,7 +8,7 @@
     <h1>Posts {{ linkToJson.render(path('posts_json')) }}</h1>
 
     {% if data.posts %}
-        {{ grid.start() }}
+        {{ grid.start({ cols: 3 }) }}
             {% for postParams in data.posts %}
                 {{ post.render(postParams) }}
             {% endfor %}

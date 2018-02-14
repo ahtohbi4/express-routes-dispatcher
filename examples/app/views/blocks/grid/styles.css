@@ -1,5 +1,12 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
+}
+
+.grid_cols_0 {
+    grid-template-columns: auto;
+}
+
+.grid_cols_3 {
+    grid-template-columns: repeat(3, 1fr);
 }

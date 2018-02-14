@@ -1,45 +1,27 @@
 {% extends '../../../../../views/layout.twig' %}
 
+{% import '../../../../../views/blocks/grid/index.twig' as grid %}
+{% import '../../../../../views/blocks/linkToJson/index.twig' as linkToJson %}
+{% import '../../../../Posts/views/blocks/post/index.twig' as post %}
 {% import '../../blocks/avatar/index.twig' as avatar %}
 {% import '../../blocks/user/index.twig' as user %}
-{% import '../../../../../views/blocks/linkToJson/index.twig' as linkToJson %}
 
 {% block title %}{{ data.user.name|escape('html') }} | User{% endblock %}
 
 {% block content %}
-    <h1>
-        {{- data.user.name }} {{ linkToJson.render(path('user_json', {
-            params: {
-                id: data.user.id,
-            },
-        })) -}}
-    </h1>
+    {{ avatar.render({
+        name: data.user.name,
+        path: data.user.avatar,
+    }) }}
+    {{ user.render(data.user) }}
 
-    {% if data.user %}
-        {{ avatar.render({
-            name: data.user.name,
-            path: data.user.avatar,
-        }) }}
-        {{ user.render(data.user) }}
-
-        {% if data.user.posts %}
-            <h4>Last posts</h4>
-
-            <ol>
-                {% for post in data.user.posts %}
-                    <li>
-                        <time>
-                            {{- date(post.datetime)|date('D, j M Y G:i') -}}
-                        <time>
-
-                        <p>
-                            {{- post.description -}}
-                        </p>
-                    </li>
-                {% endfor %}
-            </ol>
-        {% endif %}
-    {% else %}
-        <p><em>User not found.</em></p>
+    {% if data.posts %}
+        {{ grid.start({ cols: 3 }) }}
+            {% for postParams in data.posts %}
+                {{ post.render(postParams, {
+                    withAuthor: false,
+                }) }}
+            {% endfor %}
+        {{ grid.end() }}
     {% endif %}
 {% endblock %}

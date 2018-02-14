@@ -1,0 +1,21 @@
+{% extends '../../../../../views/layout.twig' %}
+
+{% import '../../../../Comments/views/blocks/comment/index.twig' as comment %}
+
+{% block content %}
+    <h1>{{ data.post.title }}</h1>
+
+    <div>
+        {{- data.post.description|nl2br -}}
+    </div>
+
+    {% set comments = data.comments|default([]) %}
+
+    <h4>Comments ({{ comments|length }})</h4>
+
+    {% for commentParams in comments %}
+        {{ comment.render(commentParams) }}
+    {% else %}
+        <p>No comments yet.</p>
+    {% endfor %}
+{% endblock %}

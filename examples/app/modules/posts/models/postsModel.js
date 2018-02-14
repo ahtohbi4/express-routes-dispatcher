@@ -1,5 +1,6 @@
 const posts = require('../../../../data/posts.json');
-const usersModel = require('../../users/models/usersModel');
+
+const usersModel = require('../../Users/models/usersModel');
 
 const Posts = function (data) {
     this.data = data;
@@ -11,8 +12,12 @@ Posts.prototype.get = function () {
     }));
 };
 
-Posts.prototype.getPostByAuthor = function (author, limit) {
-    const result = this.data.filter((post) => (post.author === author));
+Posts.prototype.getPostById = function (id) {
+    return this.get().find(({ id: postId }) => (postId === id));
+};
+
+Posts.prototype.getPostsByAuthor = function (author, limit) {
+    const result = this.get().filter((post) => (post.author === author));
 
     if (limit) {
         return result.slice(0, limit);

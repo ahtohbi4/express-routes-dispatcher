@@ -1,0 +1,26 @@
+{% macro render(params) %}
+    {% import '../../../../Users/views/blocks/avatar/index.twig' as avatar %}
+
+    {% set author = params.author %}
+    {% set id = params.id %}
+    {% set text = params.text %}
+
+    <section class="comment" data-id="comment-{{ id }}">
+        <div class="comment__avatar">
+            {{ avatar.render({
+                name: author.name,
+                path: author.avatar,
+            }, {
+                size: 's',
+            }) }}
+        </div>
+
+        <div class="comment__content">
+            <h3 class="comment__author">{{ author.name }}</h3>
+
+            <div class="comment__text">
+                {{ text|nl2br }}
+            </div>
+        </div>
+    </section>
+{% endmacro %}

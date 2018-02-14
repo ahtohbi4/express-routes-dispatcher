@@ -1,4 +1,4 @@
-const postsModel = require('../../posts/models/postsModel');
+const postsModel = require('../../Posts/models/postsModel');
 const usersModel = require('../models/usersModel');
 
 module.exports = (request, response) => {
@@ -7,16 +7,12 @@ module.exports = (request, response) => {
 
     if (!user) {
         response.status(404);
-        response.end();
-
-        return null;
     }
 
     return {
         data: {
-            user: Object.assign({}, user, {
-                posts: postsModel.getPostByAuthor(id),
-            }),
+            posts: postsModel.getPostsByAuthor(id),
+            user,
         },
     };
 };

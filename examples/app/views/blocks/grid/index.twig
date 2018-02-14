@@ -1,5 +1,9 @@
 {% macro start(options) %}
-    <div class="grid">
+    {% set options = options|default({}) %}
+    {% set COLS_VALUES = [0, 3] %}
+    {% set cols = (options.cols in COLS_VALUES) ? options.cols : 0 %}
+
+    <div class="grid grid_cols_{{ cols }}">
 {% endmacro %}
 
 {% macro end() %}

@@ -14,7 +14,7 @@ Users.prototype.get = function () {
 };
 
 Users.prototype.getUserById = function (id) {
-    return this.data.find((user) => (user.id === id));
+    return this.data.find(({ id: userId }) => (userId === id));
 };
 
 module.exports = new Users(users);

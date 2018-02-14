@@ -1,0 +1,26 @@
+.comment {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.comment .comment {
+    margin-top: 30px;
+}
+
+.comment__avatar {
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.comment__content {
+    margin-left: 10px;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.comment__author {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+}
