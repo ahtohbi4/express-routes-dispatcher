@@ -1,7 +1,9 @@
 {% macro render(params, options) %}
     {% import '../../../../Users/views/blocks/user/index.twig' as user %}
+    {% import '../comments-counter/index.twig' as commentsCounter %}
 
     {% set author = params.author %}
+    {% set comments = params.comments %}
     {% set datetime = params.datetime %}
     {% set id = params.id %}
     {% set title = params.title %}
@@ -29,6 +31,15 @@
                     withLink: true,
                 }) }}
             {% endif %}
+
+            <div>
+            </div>
+
+            <div>
+                {{ commentsCounter.render({
+                    value: comments,
+                }) }}
+            </div>
         </footer>
     </section>
 {% endmacro %}

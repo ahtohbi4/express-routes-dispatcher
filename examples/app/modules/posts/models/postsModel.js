@@ -1,5 +1,6 @@
 const posts = require('../../../../data/posts.json');
 
+const commentsModel = require('../../Comments/models/commentsModel');
 const usersModel = require('../../Users/models/usersModel');
 
 const Posts = function (data) {
@@ -9,6 +10,7 @@ const Posts = function (data) {
 Posts.prototype.get = function () {
     return this.data.map((post) => Object.assign({}, post, {
         author: usersModel.getUserById(post.author),
+        comments: commentsModel.getNumberByPostId(post.id),
     }));
 };
 

@@ -1,0 +1,7 @@
+{% macro render(params) %}
+    {% set value = params.value|default(0) %}
+
+    <span class="comments-counter">
+        {{- value -}}
+    </span>
+{% endmacro %}

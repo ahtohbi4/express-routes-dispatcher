@@ -33,4 +33,8 @@ Comments.prototype.getByPostId = function (postId) {
         }, []);
 };
 
+Comments.prototype.getNumberByPostId = function (postId) {
+    return this.getByPostId(postId).length;
+};
+
 module.exports = new Comments(comments);
