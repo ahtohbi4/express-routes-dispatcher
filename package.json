@@ -18,7 +18,10 @@
     "routing",
     "router",
     "express",
-    "expressjs"
+    "expressjs",
+    "server",
+    "Symfony",
+    "twig"
   ],
   "author": "Alexandr Antonov",
   "license": "MIT",
