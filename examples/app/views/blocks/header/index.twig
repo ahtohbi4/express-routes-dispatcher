@@ -1,2 +1,16 @@
+{% import '../../../modules/Users/views/blocks/avatar/index.twig' as avatar %}
+
 <header class="header">
+    <div class="header__search">
+        {% include '../search/index.twig' %}
+    </div>
+
+    <div class="header__current-user">
+        {{ avatar.render({
+            name: 'Billy Milligan',
+            path: '/uploads/ze5othlhycbpm3sg.svg',
+        }, {
+            size: 's',
+        }) }}
+    </div>
 </header>

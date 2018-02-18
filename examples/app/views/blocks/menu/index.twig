@@ -1,27 +1,35 @@
-{% set menu = {
-    users: {
+{% set menu = [
+    {
         label: 'Users',
+        name: 'users',
+        children: [
+            'user',
+        ],
     },
-    posts: {
+    {
         label: 'Posts',
+        name: 'posts',
+        children: [
+            'post',
+        ],
     },
-} %}
+] %}
 
 <nav class="menu">
     <ul class="menu__items-list">
-        {% for name, item in menu %}
-            {% set isCurrent = (name == __route.name) %}
+        {% for item in menu %}
+            {% set isCurrent = (item.name == __route.name or (__route.name in item.children)) %}
 
             {% set itemClass %}
-                {{ [
+                {{- [
                     'menu__item',
                     isCurrent ? 'menu__item_active' : '',
-                ]|join(' ')|trim }}
+                ]|join(' ')|trim -}}
             {% endset %}
 
             <li class="{{ itemClass }}">
                 {% set href %}
-                    {%- if (not isCurrent) %} href="{{ path(name) }}"{% endif -%}
+                    {%- if (not isCurrent) %} href="{{ path(item.name) }}"{% endif -%}
                 {% endset %}
 
                 <a class="menu__link"{{ href }}>

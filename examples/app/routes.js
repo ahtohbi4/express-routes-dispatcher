@@ -14,4 +14,10 @@ module.exports = {
         prefix: '/posts',
         resource: 'modules/Posts/routes.js',
     },
+    search: {
+        path: '/search/',
+        methods: [
+            'post',
+        ],
+    },
 };
