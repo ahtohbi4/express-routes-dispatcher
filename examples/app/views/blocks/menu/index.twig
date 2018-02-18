@@ -18,12 +18,14 @@
 <nav class="menu">
     <ul class="menu__items-list">
         {% for item in menu %}
-            {% set isCurrent = (item.name == __route.name or (__route.name in item.children)) %}
+            {% set isCurrent = (item.name == __route.name) %}
+            {% set isActive = (isCurrent or __route.name in item.children) %}
 
             {% set itemClass %}
                 {{- [
                     'menu__item',
-                    isCurrent ? 'menu__item_active' : '',
+                    'menu__item_type_' ~ item.name,
+                    isActive ? 'menu__item_active' : '',
                 ]|join(' ')|trim -}}
             {% endset %}
 

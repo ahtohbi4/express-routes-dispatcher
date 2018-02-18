@@ -10,3 +10,9 @@
 .grid_cols_3 {
     grid-template-columns: repeat(3, 1fr);
 }
+
+@media (max-width: 700px) {
+    .grid_cols_3 {
+        grid-template-columns: auto;
+    }
+}
