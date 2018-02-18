@@ -4,7 +4,7 @@ import routes from './routes';
 const router = new Router(routes, {
     baseDir: 'examples/app',
     publicDir: 'public',
-    publicPath: '/static',
+    publicPath: '/',
 
     debug: true,
 });

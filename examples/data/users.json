@@ -1,42 +1,42 @@
 [
   {
     "age": 19,
-    "avatar": "/static/uploads/69mqyxa2yumot85r.svg",
+    "avatar": "/uploads/69mqyxa2yumot85r.svg",
     "id": "50328428",
     "location": "New York, USA",
     "name": "April"
   },
   {
     "age": 19,
-    "avatar": "/static/uploads/8dcfnij5p1ovxpyq.svg",
+    "avatar": "/uploads/8dcfnij5p1ovxpyq.svg",
     "id": "95906442",
     "location": null,
     "name": "Adalana"
   },
   {
     "age": null,
-    "avatar": "/static/uploads/5v9dqt1g8tdcrdpp.svg",
+    "avatar": "/uploads/5v9dqt1g8tdcrdpp.svg",
     "id": "49078771",
     "location": "London, UK",
     "name": "Arthur Smith"
   },
   {
     "age": null,
-    "avatar": "/static/uploads/n0b0s43wbsyu0qe5.svg",
+    "avatar": "/uploads/n0b0s43wbsyu0qe5.svg",
     "id": "86047614",
     "location": null,
     "name": "Christine"
   },
   {
     "age": null,
-    "avatar": "/static/uploads/fswlk41hl0gmpwy1.svg",
+    "avatar": "/uploads/fswlk41hl0gmpwy1.svg",
     "id": "24769374",
     "location": null,
     "name": "Danny"
   },
   {
     "age": 59,
-    "avatar": "/static/uploads/ze5othlhycbpm3sg.svg",
+    "avatar": "/uploads/ze5othlhycbpm3sg.svg",
     "id": "96947293",
     "location": "Miami Beach, Florida, USA",
     "name": "Billy Milligan"
