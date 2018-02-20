@@ -1,7 +1,7 @@
 JSON based routing for Node.js
 ==
 
-[![npm version][version-img]][version] [![Dependency Status][dependency-img]][dependency] [![Travis Build Status][travis-img]][travis] [![Appveyor Build Status][appveyor-img]][appveyor] [![Codacy Badge][codacy-img]][codacy]
+[![npm version][version-img]][version] [![Dependency Status][dependency-img]][dependency] [![Travis Build Status][travis-img]][travis] [![Appveyor Build Status][appveyor-img]][appveyor] [![bitHound Overall Score][bithound-img]][bithound] [![Codacy Badge][codacy-img]][codacy]
 
 [dependency-img]: https://david-dm.org/ahtohbi4/express-routes-dispatcher.svg
 [dependency]: https://david-dm.org/ahtohbi4/express-routes-dispatcher
@@ -11,6 +11,8 @@ JSON based routing for Node.js
 [travis]: https://travis-ci.org/ahtohbi4/express-routes-dispatcher
 [appveyor-img]: https://ci.appveyor.com/api/projects/status/0xodj7np6jghyuik/branch/master?svg=true
 [appveyor]: https://ci.appveyor.com/project/ahtohbi4/express-routes-dispatcher/branch/master
+[bithound-img]: https://www.bithound.io/github/ahtohbi4/express-routes-dispatcher/badges/score.svg
+[bithound]: https://www.bithound.io/github/ahtohbi4/express-routes-dispatcher
 [codacy-img]: https://api.codacy.com/project/badge/grade/480c7aa1737046bfa6d475082847d513
 [codacy]: https://www.codacy.com/app/alexandr-post/express-routes-dispatcher
 
