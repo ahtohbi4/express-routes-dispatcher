@@ -18,7 +18,7 @@ JSON based routing for Node.js
 
 > JSON based MVC routing using [express](http://expressjs.com/) and [twig](https://twig.symfony.com/doc/2.x/) as template engine.
 
-In this implementation, the routing is based on JSON format, which is a map from a URL path to a controller (Controller) to processes the request and finally to a template (View) to visualize a response.
+In this implementation, the routing is based on JSON format, which is a map from an URL path to a controller (Controller) for processing the request, apply it to data (Model) and finally to a template for visualization a result (View).
 
 The format is similar to the syntax of [Symfony](https://symfony.com/doc/current/routing.html) YAML based Routing.
 
