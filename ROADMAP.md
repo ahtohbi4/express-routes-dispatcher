@@ -7,4 +7,4 @@ Road map
 - [ ] To add the ability of declaration of routes in JSON files.
 - [ ] To add the ability of declaration of routes in YAML files.
 - [ ] To add code coverage.
-- [ ] To create a prototype of Controller class for creating users controllers.
+- [ ] To create a prototype of class `Controller` for creating users controllers.
