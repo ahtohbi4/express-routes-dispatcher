@@ -59,9 +59,9 @@ export default class Route extends createMetaObject(schema) {
     }
 
     get uri() {
-        const { path, requirements } = this;
+        const { path: maskedPath, requirements } = this;
 
-        return path
+        return maskedPath
             .replace(Route.PATTERN_OF_PARAM, (match, name) => {
                 const pattern = requirements[name];
 
@@ -84,7 +84,7 @@ export default class Route extends createMetaObject(schema) {
     }
 
     generateURI({ hash = '', params = {}, query = {} } = {}) {
-        const path = this.path.replace(
+        const basePath = this.path.replace(
             Route.PATTERN_OF_PARAM,
             (match, paramName) => (params[paramName] || this.defaults[paramName] || ''),
         );
@@ -96,7 +96,7 @@ export default class Route extends createMetaObject(schema) {
                 return `${result}${separator}${name}=${query[name]}`;
             }, '');
 
-        return `${path}${queryString}${(hash !== '') ? `#${hash}`: ''}`;
+        return `${basePath}${queryString}${(hash !== '') ? `#${hash}` : ''}`;
     }
 }
 

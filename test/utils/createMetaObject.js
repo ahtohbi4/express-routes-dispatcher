@@ -6,7 +6,7 @@ class Foo extends createMetaObject({
     baz: undefined,
 }) {}
 
-describe('Function "createMetaObject"', function () {
+describe('Function "createMetaObject"', () => {
     it(
         'creation of instance without required parameters throws the error',
         () => assert.throws(() => new Foo(), Error),

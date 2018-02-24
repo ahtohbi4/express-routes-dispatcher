@@ -1,9 +1,7 @@
 const usersModel = require('../models/usersModel');
 
-module.exports = () => {
-    return {
-        data: {
-            users: usersModel.get(),
-        },
-    };
-};
+module.exports = () => ({
+    data: {
+        users: usersModel.get(),
+    },
+});

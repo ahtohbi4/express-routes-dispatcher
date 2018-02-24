@@ -16,7 +16,7 @@ export default class Routes {
         this.routes = Routes.normalize(routes, baseDir);
 
         if (debug) {
-            this.routes['__routes__'] = new Route({
+            this.routes.__routes__ = new Route({ // eslint-disable-line no-underscore-dangle
                 baseDir,
                 controller: () => this.routes,
                 name: '__routes__',
@@ -52,7 +52,7 @@ Routes.normalize = (routes, baseDir = '', basePrefix = '') => {
                             ...result,
                             ...Routes.normalize(
                                 subRoutes,
-                                path.resolve(baseDir, path.dirname(resource),),
+                                path.resolve(baseDir, path.dirname(resource)),
                                 normalizeURI(basePrefix, prefix),
                             ),
                         };

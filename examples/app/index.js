@@ -10,5 +10,5 @@ const router = new Router(routes, {
 });
 
 router.start(({ host, port, protocol }) => {
-    console.log(`Router on ${protocol}://${host}:${port} was started.`);
+    console.log(`Router on ${protocol}://${host}:${port} was started.`); // eslint-disable-line no-console
 });

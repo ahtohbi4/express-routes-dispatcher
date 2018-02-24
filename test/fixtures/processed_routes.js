@@ -29,7 +29,7 @@ module.exports = {
         methods: ['get', 'post'],
         requirements: {
             key1: '[a-z]{1,3}',
-            key2: '[a-z]{1,3}'
+            key2: '[a-z]{1,3}',
         },
         path: '/route/{key1}/{key2}/',
         name: 'route',
@@ -41,5 +41,5 @@ module.exports = {
         requirements: {},
         name: '__routes__',
         path: '/__routes__/',
-    }
+    },
 };

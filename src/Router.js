@@ -55,7 +55,14 @@ export default class Router {
      * @private
      */
     init(routes) {
-        const { app, baseDir, debug, publicDir, publicPath, viewsDir } = this.options;
+        const {
+            app,
+            baseDir,
+            debug,
+            publicDir,
+            publicPath,
+            viewsDir,
+        } = this.options;
 
         app.set('views', path.resolve(baseDir, viewsDir));
         app.set('view engine', 'twig');
@@ -65,7 +72,14 @@ export default class Router {
             debug,
         });
         this.routes.walk((route) => {
-            const { controller, format, methods, name, template, uri } = route;
+            const {
+                controller,
+                format,
+                methods,
+                name,
+                template,
+                uri,
+            } = route;
 
             methods.forEach((method) => {
                 app[method](uri, (request, response) => {
@@ -76,7 +90,7 @@ export default class Router {
                                 originalUrl: url,
                                 query,
                                 params,
-                                path,
+                                path: routePath,
                                 protocol,
                                 subdomains,
                             } = request;
@@ -88,7 +102,7 @@ export default class Router {
                                     name,
                                     query,
                                     params,
-                                    path,
+                                    path: routePath,
                                     protocol,
                                     subdomains,
                                     url,
@@ -114,7 +128,7 @@ export default class Router {
             response.status(404);
             response.send({
                 error: 'Not found',
-            });    
+            });
         });
 
         twig.extendFunction(
@@ -133,7 +147,12 @@ export default class Router {
      * @public
      */
     start(cb) {
-        const { app, host, port, protocol } = this.options;
+        const {
+            app,
+            host,
+            port,
+            protocol,
+        } = this.options;
 
         this.server = app.listen(port, () => {
             if (cb) {

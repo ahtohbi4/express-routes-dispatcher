@@ -6,4 +6,4 @@
  */
 export default (...parts) => parts
     .join('/')
-    .replace(/[\/]{2,}/g, '/');
+    .replace(/[/]{2,}/g, '/');
