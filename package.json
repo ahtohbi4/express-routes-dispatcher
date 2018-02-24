@@ -6,6 +6,7 @@
     "node": ">=6.5.0"
   },
   "scripts": {
+    "lint:css": "node_modules/.bin/stylelint ./examples/app/**/*.css",
     "lint:js": "node_modules/.bin/eslint ./examples ./src ./test",
     "watch": "node_modules/.bin/babel-node node_modules/.bin/gulp watch",
     "start": "node_modules/.bin/babel-node examples/app",
@@ -58,7 +59,9 @@
     "gulp-svgmin": "^1.2.4",
     "mocha": "^5.0.0",
     "postcss-csso": "^3.0.0",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "stylelint": "^9.1.1",
+    "stylelint-config-recommended": "^2.1.0"
   },
   "babel": {
     "plugins": [
