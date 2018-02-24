@@ -4,7 +4,7 @@
       "engine": "eslint"
     },
     "wc": {
-      "limit": 500
+      "limit": 1000
     }
   }
 }
