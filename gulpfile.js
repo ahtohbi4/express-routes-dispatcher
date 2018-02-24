@@ -31,9 +31,7 @@ const TASK_NAME_BUILD = 'build';
 const TASK_NAME_WATCH = 'watch';
 
 // Clearing task.
-gulp.task(TASK_NAME_CLEAR, () => {
-    return del(BUILD_DIR);
-});
+gulp.task(TASK_NAME_CLEAR, () => del(BUILD_DIR));
 
 // Task for CSS.
 gulp.task(TASK_NAME_CSS, () => gulp.src(SRC_DIR_CSS)
