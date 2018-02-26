@@ -248,6 +248,50 @@ For all templates are available some global variables and functions.
 
 ### Twig functions
 
+**`render(controller, options)`** is a function which can render a controller inside another one.
+
+| Parameter | Type | Description |
+| --------- | :----: | ----------- |
+| `controller` | *String* | **Required.** A path to the controller function. |
+| `options` | *Object* | Additional options. |
+| `options.params` | *Object* | 'Key-value' pairs to pass to the controller. |
+| `options.template` | *String* | A path to the template. |
+
+**Example:**
+
+```twig
+{# views/index.twig #}
+
+<h1>Page template</h1>
+
+{{ render('controller/partials', {
+    params: {
+        foo: 'baz',
+    },
+    template: 'views/partials.twig',
+}) }}
+```
+
+```javascript
+/* controller/partials.js */
+
+module.exports = ({ params }) => {
+    return {
+        data: {
+            foo: params.foo.split('').reverse().join(''),
+        },
+    };
+};
+```
+
+```twig
+{# views/partials.twig #}
+
+<h2>Partials template</h2>
+
+<p>foo: {{ data.foo }}</p>
+```
+
 **`path(name, options)`** is a function returns a generated URL by route name. Accepted parameters:
 
 | Parameter | Type | Description |
