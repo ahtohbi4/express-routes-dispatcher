@@ -30,7 +30,7 @@ export default class Route extends createMetaObject(schema) {
             ...DEFAULT_PARAMS,
             ...params,
 
-            controller: (typeof controller === 'string') ? require(path.resolve(baseDir, controller)) : controller,
+            controller: (typeof controller === 'string') ? require(path.resolve(baseDir, controller)) : controller, // eslint-disable-line global-require, import/no-dynamic-require, max-len
             defaults: {
                 ...DEFAULT_PARAMS.defaults,
                 ...defaults,

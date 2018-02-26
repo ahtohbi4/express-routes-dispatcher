@@ -12,6 +12,7 @@ const req = request.defaults({
 
 const router = new Router(routes, {
     baseDir: 'test/fixtures',
+    viewsDir: '',
 
     debug: true,
 });
@@ -72,6 +73,16 @@ describe('Request', () => {
         req.get('/__routes__/', { json: true }, (error, response, body) => {
             assert.deepEqual(body, processedRoutes);
             done();
+        });
+    });
+
+    it('of page with Twig function {{ render() }}', (done) => {
+        req.get('/with-render/', (error, response, body) => {
+            assert.equal(response.statusCode, 200);
+            readFile('test/fixtures/pages/with-render.html', (fileReadError, data) => {
+                assert.equal(body, data.toString());
+                done();
+            });
         });
     });
 });

@@ -42,4 +42,14 @@ module.exports = {
         name: '__routes__',
         path: '/__routes__/',
     },
+    withRender: {
+        baseDir: __dirname,
+        defaults: {
+            _template: 'pages/with-render.twig',
+        },
+        methods: ['get', 'post'],
+        requirements: {},
+        name: 'withRender',
+        path: '/with-render/',
+    },
 };

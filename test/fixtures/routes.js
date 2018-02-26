@@ -23,4 +23,10 @@ module.exports = {
             key2: '[a-z]{1,3}',
         },
     },
+    withRender: {
+        path: '/with-render/',
+        defaults: {
+            _template: 'pages/with-render.twig',
+        },
+    },
 };

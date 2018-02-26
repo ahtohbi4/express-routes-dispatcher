@@ -1,6 +1,7 @@
 import express from 'express';
 import twig from 'twig';
 import path from 'path';
+import { readFileSync } from 'fs';
 
 import Route from './Route';
 import Routes from './Routes';
@@ -130,6 +131,15 @@ export default class Router {
                 error: 'Not found',
             });
         });
+
+        twig.extendFunction(
+            'render',
+            (controller, { params, template }) => twig
+                .twig({
+                    data: readFileSync(path.resolve(baseDir, viewsDir, template), { encoding: 'utf8' }),
+                })
+                .render(require(path.resolve(baseDir, controller))({ params })), // eslint-disable-line global-require, import/no-dynamic-require, max-len
+        );
 
         twig.extendFunction(
             'path',

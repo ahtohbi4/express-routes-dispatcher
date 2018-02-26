@@ -46,7 +46,7 @@ Routes.normalize = (routes, baseDir = '', basePrefix = '') => {
                     const { prefix, resource } = route;
 
                     if (resource) {
-                        const subRoutes = require(path.resolve(baseDir, resource));
+                        const subRoutes = require(path.resolve(baseDir, resource)); // eslint-disable-line global-require, import/no-dynamic-require, max-len
 
                         return {
                             ...result,
