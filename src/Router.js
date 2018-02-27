@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import express from 'express';
 import twig from 'twig';
 import path from 'path';
@@ -67,6 +68,9 @@ export default class Router {
 
         app.set('views', path.resolve(baseDir, viewsDir));
         app.set('view engine', 'twig');
+
+        app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({ extended: true }));
 
         this.routes = new Routes(routes, {
             baseDir,
