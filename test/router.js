@@ -76,7 +76,7 @@ describe('Request', () => {
         });
     });
 
-    it('of page with Twig function {{ render() }}', (done) => {
+    it('of page with tag {% render %}', (done) => {
         req.get('/with-render/', (error, response, body) => {
             assert.equal(response.statusCode, 200);
             readFile('test/fixtures/pages/with-render.html', (fileReadError, data) => {

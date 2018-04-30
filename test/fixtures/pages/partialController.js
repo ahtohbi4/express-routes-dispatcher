@@ -1,6 +1,5 @@
-module.exports = ({ params }) => ({
+module.exports = () => ({
     data: {
-        ...params,
         key: 'value',
     },
 });

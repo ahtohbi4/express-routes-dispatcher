@@ -1,8 +1,6 @@
-<h1>Page with 'render' function</h1>
+<h1>Page with tag 'render'</h1>
 
-{{ render('pages/partialController', {
-    params: {
-        foo: 'baz',
-    },
+{% render 'partialController' with {
+    foo: 'baz',
     template: 'pages/partial.twig',
-}) }}
+} %}
