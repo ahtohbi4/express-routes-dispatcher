@@ -5,6 +5,9 @@ const router = new Router(routes, {
     baseDir: 'examples/app',
     publicDir: 'public',
     publicPath: '/',
+    servicePages: {
+        notFoundPage: './views/pages/not-found-page/index.twig',
+    },
 
     debug: true,
 });

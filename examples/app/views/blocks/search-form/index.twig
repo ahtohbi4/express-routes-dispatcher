@@ -1,0 +1,5 @@
+<form action="{{ path('search') }}" class="search-form" method="post">
+    <button aria-label="Найти" class="search-form__button" type="submit"></button>
+
+    <input class="search-form__input" name="query" placeholder="Найти" value="{{ query|default('') }}">
+</form>

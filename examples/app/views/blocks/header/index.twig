@@ -1,21 +1,13 @@
-{% import '../../../modules/Users/views/blocks/avatar/index.twig' as avatar %}
-
 <header class="header">
     <div class="header__search">
-        {{ render('controllers/searchController.js', {
-            params: {
-                query: data.query,
-            },
-            template: 'blocks/search/index.twig',
-        }) }}
+        {% include '../search-form/index.twig' with {
+            query: query,
+        } %}
     </div>
 
     <div class="header__current-user">
-        {{ avatar.render({
-            name: 'Billy Milligan',
-            path: '/uploads/ze5othlhycbpm3sg.svg',
-        }, {
-            size: 's',
-        }) }}
+        {% render '../../../modules/Users/controllers/currentUserController' with {
+            template: '../../../modules/Users/views/blocks/current-user/index.twig',
+        } %}
     </div>
 </header>

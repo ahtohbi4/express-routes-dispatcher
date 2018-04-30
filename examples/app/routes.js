@@ -19,7 +19,7 @@ module.exports = {
         methods: [
             'post',
         ],
-        controller: 'controllers/searchController',
+        controller: 'modules/Search/controllers/searchController',
         defaults: {
             _format: 'html',
             _template: 'views/pages/search/index.twig',

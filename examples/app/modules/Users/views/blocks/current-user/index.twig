@@ -1,0 +1,8 @@
+{% import '../avatar/index.twig' as avatar %}
+
+{{ avatar.render({
+    name: data.user.name,
+    path: data.user.avatar,
+}, {
+    size: 's',
+}) }}

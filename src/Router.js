@@ -2,10 +2,12 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import twig from 'twig';
 import path from 'path';
-import { readFileSync } from 'fs';
 
 import Route from './Route';
 import Routes from './Routes';
+
+import pathFunctionExtention from './utils/twig/pathFunctionExtention';
+import renderTagExtention from './utils/twig/renderTagExtention';
 
 const DEFAULT_OPTIONS = {
     app: express(),
@@ -63,6 +65,7 @@ export default class Router {
             debug,
             publicDir,
             publicPath,
+            servicePages: { notFoundPage } = {},
             viewsDir,
         } = this.options;
 
@@ -131,26 +134,18 @@ export default class Router {
         // Page not found.
         app.use((request, response) => {
             response.status(404);
-            response.send({
-                error: 'Not found',
-            });
+
+            if (notFoundPage) {
+                response.render(path.resolve(baseDir, notFoundPage));
+            } else {
+                response.send({
+                    error: 'Not found',
+                });
+            }
         });
 
-        twig.extendFunction(
-            'render',
-            (controller, { params, template }) => twig
-                .twig({
-                    data: readFileSync(path.resolve(baseDir, viewsDir, template), { encoding: 'utf8' }),
-                })
-                .render(require(path.resolve(baseDir, controller))({ params })), // eslint-disable-line global-require, import/no-dynamic-require, max-len
-        );
-
-        twig.extendFunction(
-            'path',
-            (name, params) => this.routes
-                .getByName(name)
-                .generateURI(params),
-        );
+        twig.extend(renderTagExtention);
+        twig.extendFunction('path', pathFunctionExtention(this.routes));
     }
 
     /**

@@ -19,7 +19,9 @@
             {% include './blocks/menu/index.twig' %}
         </aside>
 
-        {% include './blocks/header/index.twig' %}
+        {% include './blocks/header/index.twig' with {
+            query: data.query,
+        } %}
 
         <main class="layout__content">
             {% block content %}{% endblock %}

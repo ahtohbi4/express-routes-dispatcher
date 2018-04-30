@@ -13,7 +13,6 @@ body {
         'Segoe UI',
         Helvetica,
         Arial,
-        sans-serif,
         'Apple Color Emoji',
         'Segoe UI Emoji',
         'Segoe UI Symbol',
@@ -48,9 +47,10 @@ a[href]:hover {
     min-width: 320px;
     min-height: 100%;
     margin: 0 auto;
-    grid-template-areas: 'column-left header'
-                         'column-left content'
-                         'column-left footer';
+    grid-template-areas:
+        'column-left header'
+        'column-left content'
+        'column-left footer';
     grid-template-columns: 70px auto;
     grid-template-rows: 70px auto 70px;
 }
