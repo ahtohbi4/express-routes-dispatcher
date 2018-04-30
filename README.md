@@ -246,16 +246,21 @@ For all templates are available some global variables and functions.
 {% endif %}
 ```
 
-### Twig functions
+### Twig tags
 
-**`render(controller, options)`** is a function which can render a controller inside another one.
+**`render`** is a tag which can render a controller inside another one.
+
+Syntax:
+
+```twig
+{% render <controller> with <params> %}
+```
 
 | Parameter | Type | Description |
 | --------- | :----: | ----------- |
 | `controller` | *String* | **Required.** A path to the controller function. |
-| `options` | *Object* | Additional options. |
-| `options.params` | *Object* | 'Key-value' pairs to pass to the controller. |
-| `options.template` | *String* | A path to the template. |
+| `params` | *Object* | Additional parameters. |
+| `options.template` | *String* | **Required.** A path to the template. |
 
 **Example:**
 
@@ -264,21 +269,18 @@ For all templates are available some global variables and functions.
 
 <h1>Page template</h1>
 
-{{ render('controller/partials', {
-    params: {
-        foo: 'baz',
-    },
+{% render 'controller/partials' with {
     template: 'views/partials.twig',
-}) }}
+}) %}
 ```
 
 ```javascript
 /* controller/partials.js */
 
-module.exports = ({ params }) => {
+module.exports = () => {
     return {
         data: {
-            foo: params.foo.split('').reverse().join(''),
+            foo: 'baz',
         },
     };
 };
@@ -291,6 +293,18 @@ module.exports = ({ params }) => {
 
 <p>foo: {{ data.foo }}</p>
 ```
+
+In final HTML document we will get:
+
+```html
+<h1>Page template</h1>
+
+<h2>Partials template</h2>
+
+<p>foo: baz</p>
+```
+
+### Twig functions
 
 **`path(name, options)`** is a function returns a generated URL by route name. Accepted parameters:
 
