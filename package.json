@@ -6,12 +6,12 @@
     "node": ">=6.5.0"
   },
   "scripts": {
-    "lint:css": "node_modules/.bin/stylelint ./examples/app/**/*.css",
-    "lint:js": "node_modules/.bin/eslint ./*.js ./**/*.js",
-    "lint:staged": "node_modules/.bin/lint-staged",
-    "watch": "node_modules/.bin/babel-node node_modules/.bin/gulp watch",
-    "start": "node_modules/.bin/babel-node examples/app",
-    "test": "node_modules/.bin/mocha --recursive --require babel-register",
+    "lint:css": "stylelint ./examples/app/**/*.css",
+    "lint:js": "eslint ./*.js ./**/*.js",
+    "lint:staged": "lint-staged",
+    "watch": "babel-node $(npm bin)/gulp watch",
+    "start": "babel-node examples/app",
+    "test": "mocha --recursive --require babel-register",
     "test:watch": "yarn run test --watch"
   },
   "lint-staged": {
