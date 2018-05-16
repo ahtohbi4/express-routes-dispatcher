@@ -20,7 +20,7 @@ const DEFAULT_OPTIONS = {
     viewsDir: 'views',
 
     host: 'localhost',
-    port: '3000',
+    port: process.env.PORT || '3000',
     protocol: 'http',
 };
 
