@@ -46,7 +46,7 @@
     "twig": "^1.10.5"
   },
   "devDependencies": {
-    "autoprefixer": "8.0.0",
+    "autoprefixer": "9.6.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-plugin-add-module-exports": "^0.2.1",
